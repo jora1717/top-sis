@@ -66,9 +66,13 @@ export function CartDrawer({ open, onClose, items, total, onAdd, onRemove, onChe
               </div>
             </div>
             <div className="border-t border-border p-4">
+              <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
+                <span>Cena dostave:</span>
+                <span>250 RSD</span>
+              </div>
               <div className="mb-4 flex items-center justify-between text-lg font-bold">
                 <span>Ukupno:</span>
-                <span className="text-primary">{total} RSD</span>
+                <span className="text-primary">{total + 250} RSD</span>
               </div>
               <button
                 onClick={onCheckout}
