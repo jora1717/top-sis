@@ -4,9 +4,18 @@ import type { MenuCategory, MenuItem } from "@/data/menu";
 interface MenuSectionProps {
   category: MenuCategory;
   onAddItem: (item: MenuItem) => void;
+  onAddWithToppings?: (item: MenuItem) => void;
 }
 
-export function MenuSection({ category, onAddItem }: MenuSectionProps) {
+export function MenuSection({ category, onAddItem, onAddWithToppings }: MenuSectionProps) {
+  const handleClick = (item: MenuItem) => {
+    if (item.category === "pljeskavice" && onAddWithToppings) {
+      onAddWithToppings(item);
+    } else {
+      onAddItem(item);
+    }
+  };
+
   return (
     <section className="animate-slide-up">
       <h2 className="mb-4 text-xl font-bold sm:text-2xl">{category.name}</h2>
@@ -14,10 +23,9 @@ export function MenuSection({ category, onAddItem }: MenuSectionProps) {
         {category.items.map((item) => (
           <button
             key={item.id}
-            onClick={() => onAddItem(item)}
+            onClick={() => handleClick(item)}
             className="food-card-shadow group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/40 hover:bg-muted active:scale-[0.98]"
           >
-            {/* Image placeholder */}
             <div className="relative aspect-square w-full bg-muted">
               {item.image ? (
                 <img

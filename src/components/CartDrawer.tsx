@@ -6,19 +6,21 @@ interface CartDrawerProps {
   onClose: () => void;
   items: CartItem[];
   total: number;
+  deliveryMode: "delivery" | "pickup";
+  onDeliveryModeChange: (mode: "delivery" | "pickup") => void;
   onAdd: (item: CartItem) => void;
-  onRemove: (id: string) => void;
+  onRemove: (cartKey: string) => void;
   onCheckout: () => void;
 }
 
-export function CartDrawer({ open, onClose, items, total, onAdd, onRemove, onCheckout }: CartDrawerProps) {
+export function CartDrawer({ open, onClose, items, total, deliveryMode, onDeliveryModeChange, onAdd, onRemove, onCheckout }: CartDrawerProps) {
+  const deliveryFee = deliveryMode === "delivery" ? 250 : 0;
+
   return (
     <>
-      {/* Overlay */}
       {open && (
         <div className="fixed inset-0 z-50 bg-background/60 backdrop-blur-sm" onClick={onClose} />
       )}
-      {/* Drawer */}
       <div
         className={`fixed right-0 top-0 z-50 flex h-full w-full max-w-md flex-col border-l border-border bg-card transition-transform duration-300 ${
           open ? "translate-x-0" : "translate-x-full"
@@ -39,16 +41,45 @@ export function CartDrawer({ open, onClose, items, total, onAdd, onRemove, onChe
         ) : (
           <>
             <div className="flex-1 overflow-y-auto p-4">
+              {/* Delivery toggle */}
+              <div className="mb-4 inline-flex w-full rounded-lg bg-muted p-1">
+                <button
+                  onClick={() => onDeliveryModeChange("delivery")}
+                  className={`flex-1 rounded-md px-4 py-2 text-sm font-medium transition-all ${
+                    deliveryMode === "delivery"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Dostava
+                </button>
+                <button
+                  onClick={() => onDeliveryModeChange("pickup")}
+                  className={`flex-1 rounded-md px-4 py-2 text-sm font-medium transition-all ${
+                    deliveryMode === "pickup"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  Lično preuzimanje
+                </button>
+              </div>
+
               <div className="space-y-3">
                 {items.map((item) => (
-                  <div key={item.id} className="flex items-center justify-between rounded-lg bg-muted p-3">
+                  <div key={item.cartKey} className="flex items-center justify-between rounded-lg bg-muted p-3">
                     <div>
                       <p className="font-medium">{item.name}</p>
+                      {item.selectedToppings && item.selectedToppings.length > 0 && (
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          + {item.selectedToppings.join(", ")}
+                        </p>
+                      )}
                       <p className="text-sm text-primary font-semibold">{item.price * item.quantity} RSD</p>
                     </div>
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => onRemove(item.id)}
+                        onClick={() => onRemove(item.cartKey)}
                         className="flex h-8 w-8 items-center justify-center rounded-full bg-card text-foreground hover:bg-destructive hover:text-destructive-foreground transition-colors"
                       >
                         <Minus className="h-4 w-4" />
@@ -66,13 +97,15 @@ export function CartDrawer({ open, onClose, items, total, onAdd, onRemove, onChe
               </div>
             </div>
             <div className="border-t border-border p-4">
-              <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
-                <span>Cena dostave:</span>
-                <span>250 RSD</span>
-              </div>
+              {deliveryMode === "delivery" && (
+                <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
+                  <span>Cena dostave:</span>
+                  <span>250 RSD</span>
+                </div>
+              )}
               <div className="mb-4 flex items-center justify-between text-lg font-bold">
                 <span>Ukupno:</span>
-                <span className="text-primary">{total + 250} RSD</span>
+                <span className="text-primary">{total + deliveryFee} RSD</span>
               </div>
               <button
                 onClick={onCheckout}
