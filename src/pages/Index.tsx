@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Header } from "@/components/Header";
-import { DeliveryToggle } from "@/components/DeliveryToggle";
 import { MenuSection } from "@/components/MenuSection";
 import { CartDrawer } from "@/components/CartDrawer";
 import { CheckoutModal } from "@/components/CheckoutModal";
+import { ToppingsModal } from "@/components/ToppingsModal";
 import { useCart } from "@/hooks/useCart";
-import { menuCategories } from "@/data/menu";
+import { menuCategories, type MenuItem } from "@/data/menu";
 import heroImg from "@/assets/sis-hero.webp";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
@@ -14,6 +14,16 @@ const Index = () => {
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [deliveryMode, setDeliveryMode] = useState<"delivery" | "pickup">("delivery");
+  const [toppingsItem, setToppingsItem] = useState<MenuItem | null>(null);
+
+  const handleAddWithToppings = (item: MenuItem) => {
+    setToppingsItem(item);
+  };
+
+  const handleToppingsConfirm = (item: MenuItem, toppings: string[]) => {
+    cart.addItem(item, toppings);
+    setToppingsItem(null);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -32,16 +42,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Controls */}
-      <div className="container mt-6">
-        <DeliveryToggle mode={deliveryMode} onChange={setDeliveryMode} />
-      </div>
-
       {/* Menu */}
       <main className="container py-6">
         <div className="space-y-10">
           {menuCategories.map((cat) => (
-            <MenuSection key={cat.id} category={cat} onAddItem={cart.addItem} />
+            <MenuSection
+              key={cat.id}
+              category={cat}
+              onAddItem={(item) => cart.addItem(item)}
+              onAddWithToppings={handleAddWithToppings}
+            />
           ))}
         </div>
       </main>
@@ -138,12 +148,21 @@ const Index = () => {
         onClose={() => setCartOpen(false)}
         items={cart.items}
         total={cart.total}
-        onAdd={cart.addItem}
+        deliveryMode={deliveryMode}
+        onDeliveryModeChange={setDeliveryMode}
+        onAdd={(item) => cart.addItem(item, item.selectedToppings)}
         onRemove={cart.removeItem}
         onCheckout={() => {
           setCartOpen(false);
           setCheckoutOpen(true);
         }}
+      />
+
+      <ToppingsModal
+        open={!!toppingsItem}
+        item={toppingsItem}
+        onClose={() => setToppingsItem(null)}
+        onConfirm={handleToppingsConfirm}
       />
 
       <CheckoutModal

@@ -4,6 +4,7 @@ export interface MenuItem {
   price: number;
   category: string;
   image?: string;
+  toppings?: string[];
 }
 
 export interface MenuCategory {
@@ -12,6 +13,11 @@ export interface MenuCategory {
   image: string;
   items: MenuItem[];
 }
+
+export const AVAILABLE_TOPPINGS = [
+  "Kupus", "Zelena salata", "Majonez", "Pavlaka",
+  "Kečap", "Senf", "Luk", "Urnebes", "Tucana"
+];
 
 import sisImg from "@/assets/sis-hero.webp";
 import pljeskavicaImg from "@/assets/pljeskavica.webp";
@@ -23,6 +29,7 @@ import osvezenjeImg from "@/assets/osvezenje.webp";
 import velkiSisImg from "@/assets/menu/veliki-sis.webp";
 import srednjiSisImg from "@/assets/menu/srednji-sis.webp";
 import maliSisImg from "@/assets/menu/mali-sis.webp";
+import punjeniSisImg from "@/assets/menu/punjeni-sis.webp";
 import velikaPljImg from "@/assets/menu/velika-pljeskavica.webp";
 import malaPljImg from "@/assets/menu/mala-pljeskavica.webp";
 import gurmanskaPljImg from "@/assets/menu/gurmanska-pljeskavica.webp";
@@ -45,6 +52,7 @@ export const menuCategories: MenuCategory[] = [
       { id: "sis-1", name: "Veliki šiš", price: 390, category: "sis", image: velkiSisImg },
       { id: "sis-2", name: "Srednji šiš", price: 350, category: "sis", image: srednjiSisImg },
       { id: "sis-3", name: "Mali šiš", price: 310, category: "sis", image: maliSisImg },
+      { id: "sis-4", name: "Punjeni šiš", price: 420, category: "sis", image: punjeniSisImg },
     ],
   },
   {
@@ -60,14 +68,21 @@ export const menuCategories: MenuCategory[] = [
     ],
   },
   {
-    id: "glavna",
-    name: "Glavna jela i deserti",
+    id: "ostali",
+    name: "Ostali specijaliteti",
     image: glavnaJelaImg,
     items: [
-      { id: "glv-1", name: "Pohovano belo", price: 400, category: "glavna", image: pohovanoBelo },
-      { id: "glv-2", name: "Punjena vešalica", price: 410, category: "glavna", image: punjenaVesalica },
-      { id: "glv-3", name: "Slana palačinka", price: 350, category: "glavna", image: slanaPalacinka },
-      { id: "glv-4", name: "Slatka palačinka", price: 360, category: "glavna", image: slatkaPalacinka },
+      { id: "glv-1", name: "Pohovano belo", price: 400, category: "ostali", image: pohovanoBelo },
+      { id: "glv-2", name: "Punjena vešalica", price: 410, category: "ostali", image: punjenaVesalica },
+    ],
+  },
+  {
+    id: "palacinke",
+    name: "Palačinke",
+    image: glavnaJelaImg,
+    items: [
+      { id: "pal-1", name: "Slana palačinka", price: 350, category: "palacinke", image: slanaPalacinka },
+      { id: "pal-2", name: "Slatka palačinka", price: 360, category: "palacinke", image: slatkaPalacinka },
     ],
   },
   {
