@@ -1,5 +1,6 @@
 import { ShoppingCart, Menu, X } from "lucide-react";
 import { useState } from "react";
+import logoImg from "@/assets/logo.webp";
 
 interface HeaderProps {
   cartCount: number;
@@ -25,7 +26,7 @@ export function Header({ cartCount, onCartClick }: HeaderProps) {
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">🔥</span>
+          <img src={logoImg} alt="Top Šiš Fast Food logo" className="h-10 w-10 object-contain" />
           <h1 className="text-xl font-bold tracking-tight">
             Top Šiš <span className="text-primary">Fast Food</span>
           </h1>
