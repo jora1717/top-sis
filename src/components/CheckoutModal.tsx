@@ -86,7 +86,7 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
               )}
               <div className="flex items-center justify-between rounded-lg bg-muted p-3">
                 <span className="font-medium text-muted-foreground">Ukupno</span>
-                <span className="text-xl font-bold text-primary">{total} RSD</span>
+                <span className="text-xl font-bold text-primary">{total + (deliveryMode === "delivery" ? 250 : 0)} RSD</span>
               </div>
               <button
                 type="submit"
