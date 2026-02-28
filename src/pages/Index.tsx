@@ -28,7 +28,7 @@ const Index = () => {
             Brza hrana,<br />
             <span className="text-primary">pravi ukus.</span>
           </h2>
-          <p className="mt-2 text-muted-foreground">Naruči za par klikova 🔥</p>
+          <p className="mt-2 text-muted-foreground">Naruči za par klikova</p>
         </div>
       </section>
 
