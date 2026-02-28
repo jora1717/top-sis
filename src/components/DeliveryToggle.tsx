@@ -14,7 +14,7 @@ export function DeliveryToggle({ mode, onChange }: DeliveryToggleProps) {
             : "text-muted-foreground hover:text-foreground"
         }`}
       >
-        🚚 Dostava
+        Dostava
       </button>
       <button
         onClick={() => onChange("pickup")}
@@ -24,7 +24,7 @@ export function DeliveryToggle({ mode, onChange }: DeliveryToggleProps) {
             : "text-muted-foreground hover:text-foreground"
         }`}
       >
-        🏪 Lično preuzimanje
+        Lično preuzimanje
       </button>
     </div>
   );
