@@ -7,6 +7,7 @@ import { CheckoutModal } from "@/components/CheckoutModal";
 import { useCart } from "@/hooks/useCart";
 import { menuCategories } from "@/data/menu";
 import heroImg from "@/assets/sis-hero.webp";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const Index = () => {
   const cart = useCart();
@@ -44,6 +45,71 @@ const Index = () => {
           ))}
         </div>
       </main>
+
+      {/* O nama */}
+      <section id="o-nama" className="border-t border-border bg-card py-12">
+        <div className="container">
+          <h2 className="mb-4 text-2xl font-bold">O nama</h2>
+          <p className="max-w-2xl text-muted-foreground leading-relaxed">
+            Top Šiš Fast Food je mesto gde se tradicija i ukus spajaju. Već godinama pružamo našim gostima
+            najkvalitetnije šiš specijalitete, pljeskavice i ostala jela pripremljena sa ljubavlju i od
+            svežih sastojaka. Naša misija je jednostavna — brza, ukusna i pristupačna hrana za sve.
+          </p>
+        </div>
+      </section>
+
+      {/* Lokacija */}
+      <section id="lokacija" className="border-t border-border py-12">
+        <div className="container">
+          <h2 className="mb-4 text-2xl font-bold">Lokacija</h2>
+          <div className="flex items-center gap-2 mb-4 text-muted-foreground">
+            <MapPin className="h-5 w-5 text-primary" />
+            <span>Strugarska 1a</span>
+          </div>
+          <div className="overflow-hidden rounded-xl border border-border">
+            <iframe
+              title="Top Šiš lokacija"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.5!2d20.46!3d44.82!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sStrugarska+1a!5e0!3m2!1ssr!2srs!4v1700000000000"
+              width="100%"
+              height="350"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Kontakt */}
+      <section id="kontakt" className="border-t border-border bg-card py-12">
+        <div className="container">
+          <h2 className="mb-6 text-2xl font-bold">Kontakt</h2>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div className="flex items-center gap-3 rounded-xl border border-border bg-muted p-4">
+              <Phone className="h-5 w-5 text-primary" />
+              <div>
+                <p className="text-sm text-muted-foreground">Telefon</p>
+                <p className="font-medium">+381 XX XXX XXXX</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded-xl border border-border bg-muted p-4">
+              <Mail className="h-5 w-5 text-primary" />
+              <div>
+                <p className="text-sm text-muted-foreground">Email</p>
+                <p className="font-medium">info@topsis.rs</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 rounded-xl border border-border bg-muted p-4">
+              <Clock className="h-5 w-5 text-primary" />
+              <div>
+                <p className="text-sm text-muted-foreground">Radno vreme</p>
+                <p className="font-medium">08:00 - 23:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Sticky Cart Bar (mobile) */}
       {cart.count > 0 && !cartOpen && (

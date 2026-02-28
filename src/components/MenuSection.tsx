@@ -9,31 +9,35 @@ interface MenuSectionProps {
 export function MenuSection({ category, onAddItem }: MenuSectionProps) {
   return (
     <section className="animate-slide-up">
-      <div className="relative mb-4 h-40 overflow-hidden rounded-xl sm:h-48">
-        <img
-          src={category.image}
-          alt={category.name}
-          className="h-full w-full object-cover"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
-        <h2 className="absolute bottom-4 left-4 text-xl font-bold sm:text-2xl">
-          {category.name}
-        </h2>
-      </div>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <h2 className="mb-4 text-xl font-bold sm:text-2xl">{category.name}</h2>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         {category.items.map((item) => (
           <button
             key={item.id}
             onClick={() => onAddItem(item)}
-            className="food-card-shadow group flex items-center justify-between rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/40 hover:bg-muted active:scale-[0.98]"
+            className="food-card-shadow group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/40 hover:bg-muted active:scale-[0.98]"
           >
-            <div className="text-left">
-              <p className="font-medium text-card-foreground">{item.name}</p>
-              <p className="mt-1 text-lg font-bold text-primary">{item.price} RSD</p>
+            {/* Image placeholder */}
+            <div className="relative aspect-square w-full bg-muted">
+              {item.image ? (
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-3xl text-muted-foreground/40">
+                  🍽️
+                </div>
+              )}
+              <div className="absolute bottom-2 right-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:scale-110">
+                <Plus className="h-4 w-4" />
+              </div>
             </div>
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:scale-110">
-              <Plus className="h-5 w-5" />
+            <div className="p-3 text-left">
+              <p className="text-sm font-medium text-card-foreground leading-tight">{item.name}</p>
+              <p className="mt-1 text-base font-bold text-primary">{item.price} RSD</p>
             </div>
           </button>
         ))}
