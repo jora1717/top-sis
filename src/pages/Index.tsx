@@ -111,6 +111,15 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Footer */}
+      <footer className="border-t border-border bg-muted py-8">
+        <div className="container text-center text-sm text-muted-foreground space-y-2">
+          <p>© {new Date().getFullYear()} Top Šiš Fast Food. Sva prava zadržana.</p>
+          <p>Strugarska 1a · +381 XX XXX XXXX · info@topsis.rs</p>
+          <p className="text-xs">Cene su izražene u RSD. Dostava se naplaćuje dodatno.</p>
+        </div>
+      </footer>
+
       {/* Sticky Cart Bar (mobile) */}
       {cart.count > 0 && !cartOpen && (
         <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card/95 p-3 backdrop-blur-md sm:hidden">

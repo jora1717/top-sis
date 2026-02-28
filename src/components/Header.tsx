@@ -24,7 +24,7 @@ export function Header({ cartCount, onCartClick }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-24 items-center justify-between">
         <div className="flex items-center gap-2">
           <img src={logoImg} alt="Top Šiš Fast Food logo" className="h-20 w-20 object-contain" />
           <h1 className="text-xl font-bold tracking-tight">
