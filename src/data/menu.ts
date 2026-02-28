@@ -39,7 +39,7 @@ import osvezenjeMenu from "@/assets/menu/osvezenje.webp";
 export const menuCategories: MenuCategory[] = [
   {
     id: "sis",
-    name: "Šiš Specijaliteti",
+    name: "Šiš specijaliteti",
     image: sisImg,
     items: [
       { id: "sis-1", name: "Veliki šiš", price: 390, category: "sis", image: velkiSisImg },
