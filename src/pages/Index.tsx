@@ -38,21 +38,21 @@ const Index = () => {
             Brza hrana,<br />
             <span className="text-primary">pravi ukus.</span>
           </h2>
-          <p className="mt-2 text-muted-foreground">Naruči za par klikova</p>
+          <p className="mt-2 text-muted-foreground">Naruči ukusnu hranu u samo par klikova!</p>
         </div>
       </section>
 
       {/* Menu */}
       <main className="container py-6">
         <div className="space-y-10">
-          {menuCategories.map((cat) => (
-            <MenuSection
-              key={cat.id}
-              category={cat}
-              onAddItem={(item) => cart.addItem(item)}
-              onAddWithToppings={handleAddWithToppings}
-            />
-          ))}
+          {menuCategories.map((cat) =>
+          <MenuSection
+            key={cat.id}
+            category={cat}
+            onAddItem={(item) => cart.addItem(item)}
+            onAddWithToppings={handleAddWithToppings} />
+
+          )}
         </div>
       </main>
 
@@ -85,8 +85,8 @@ const Index = () => {
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+              referrerPolicy="no-referrer-when-downgrade" />
+
           </div>
         </div>
       </section>
@@ -131,17 +131,17 @@ const Index = () => {
       </footer>
 
       {/* Sticky Cart Bar (mobile) */}
-      {cart.count > 0 && !cartOpen && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card/95 p-3 backdrop-blur-md sm:hidden">
+      {cart.count > 0 && !cartOpen &&
+      <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card/95 p-3 backdrop-blur-md sm:hidden">
           <button
-            onClick={() => setCartOpen(true)}
-            className="glow-primary flex w-full items-center justify-between rounded-xl bg-primary px-5 py-3 font-bold text-primary-foreground"
-          >
+          onClick={() => setCartOpen(true)}
+          className="glow-primary flex w-full items-center justify-between rounded-xl bg-primary px-5 py-3 font-bold text-primary-foreground">
+
             <span>Pogledaj korpu ({cart.count})</span>
             <span>{cart.total} RSD</span>
           </button>
         </div>
-      )}
+      }
 
       <CartDrawer
         open={cartOpen}
@@ -155,15 +155,15 @@ const Index = () => {
         onCheckout={() => {
           setCartOpen(false);
           setCheckoutOpen(true);
-        }}
-      />
+        }} />
+
 
       <ToppingsModal
         open={!!toppingsItem}
         item={toppingsItem}
         onClose={() => setToppingsItem(null)}
-        onConfirm={handleToppingsConfirm}
-      />
+        onConfirm={handleToppingsConfirm} />
+
 
       <CheckoutModal
         open={checkoutOpen}
@@ -173,10 +173,10 @@ const Index = () => {
         onSubmit={() => {
           cart.clearCart();
           setCheckoutOpen(false);
-        }}
-      />
-    </div>
-  );
+        }} />
+
+    </div>);
+
 };
 
 export default Index;
