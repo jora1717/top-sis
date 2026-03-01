@@ -39,6 +39,10 @@ import pomfritItemImg from "@/assets/menu/pomfrit.webp";
 import cocaColaImg from "@/assets/menu/coca-cola.jpg";
 import fantaImg from "@/assets/menu/fanta.jpg";
 import spriteImg from "@/assets/menu/sprite.jpg";
+import velikiSisImg from "@/assets/menu/veliki-sis.jpg";
+import srednjiSisImg from "@/assets/menu/srednji-sis.jpg";
+import maliSisImg from "@/assets/menu/mali-sis.jpg";
+import punjeniSisImg from "@/assets/menu/punjeni-sis.jpg";
 
 export const menuCategories: MenuCategory[] = [
   {
@@ -46,10 +50,10 @@ export const menuCategories: MenuCategory[] = [
     name: "Šiš specijaliteti",
     image: sisImg,
     items: [
-      { id: "sis-1", name: "Veliki šiš", price: 390, category: "sis" },
-      { id: "sis-2", name: "Srednji šiš", price: 350, category: "sis" },
-      { id: "sis-3", name: "Mali šiš", price: 310, category: "sis" },
-      { id: "sis-4", name: "Punjeni šiš", price: 420, category: "sis" },
+      { id: "sis-1", name: "Veliki šiš", price: 390, category: "sis", image: velikiSisImg },
+      { id: "sis-2", name: "Srednji šiš", price: 350, category: "sis", image: srednjiSisImg },
+      { id: "sis-3", name: "Mali šiš", price: 310, category: "sis", image: maliSisImg },
+      { id: "sis-4", name: "Punjeni šiš", price: 420, category: "sis", image: punjeniSisImg },
     ],
   },
   {
