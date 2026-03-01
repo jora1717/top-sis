@@ -36,6 +36,9 @@ import punjenaVesalica from "@/assets/menu/punjena-vesalica.webp";
 import slanaPalacinka from "@/assets/menu/slana-palacinka.webp";
 import slatkaPalacinka from "@/assets/menu/slatka-palacinka.webp";
 import pomfritItemImg from "@/assets/menu/pomfrit.webp";
+import cocaColaImg from "@/assets/menu/coca-cola.jpg";
+import fantaImg from "@/assets/menu/fanta.jpg";
+import spriteImg from "@/assets/menu/sprite.jpg";
 
 export const menuCategories: MenuCategory[] = [
   {
@@ -93,9 +96,9 @@ export const menuCategories: MenuCategory[] = [
     name: "Osveženje",
     image: osvezenjeImg,
     items: [
-      { id: "osv-1", name: "Coca Cola", price: 110, category: "osvezenje" },
-      { id: "osv-2", name: "Fanta", price: 110, category: "osvezenje" },
-      { id: "osv-3", name: "Sprite", price: 110, category: "osvezenje" },
+      { id: "osv-1", name: "Coca Cola", price: 110, category: "osvezenje", image: cocaColaImg },
+      { id: "osv-2", name: "Fanta", price: 110, category: "osvezenje", image: fantaImg },
+      { id: "osv-3", name: "Sprite", price: 110, category: "osvezenje", image: spriteImg },
     ],
   },
 ];
