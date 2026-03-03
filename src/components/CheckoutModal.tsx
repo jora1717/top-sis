@@ -9,25 +9,23 @@ interface CheckoutModalProps {
   onSubmit: () => void;
 }
 
-const SERBIAN_LETTERS = /^[a-zA-ZčćšžđČĆŠŽĐ]+$/;
 const NAME_REGEX = /^[a-zA-ZčćšžđČĆŠŽĐ]{2,}(\s[a-zA-ZčćšžđČĆŠŽĐ]{2,})?$/;
 const PHONE_REGEX = /^06\d{6,9}$/;
 const ADDRESS_REGEX = /^[a-zA-ZčćšžđČĆŠŽĐ0-9\s/]+$/;
 
 function validateName(v: string): string | null {
-  if (!v.trim()) return null;
+  if (!v.trim()) return "Ime i prezime mogu sadržati samo slova.";
   if (!NAME_REGEX.test(v.trim())) return "Ime i prezime mogu sadržati samo slova.";
   return null;
 }
 
 function validatePhone(v: string): string | null {
-  if (!v) return null;
-  if (!PHONE_REGEX.test(v)) return "Unesite ispravan broj telefona (npr. 0641234567).";
+  if (!v || !PHONE_REGEX.test(v)) return "Unesite ispravan broj telefona (npr. 0641234567).";
   return null;
 }
 
 function validateAddress(v: string): string | null {
-  if (!v.trim()) return null;
+  if (!v.trim()) return "Unesite ispravnu adresu (slova i brojevi, npr. Bulevar 45a).";
   if (!ADDRESS_REGEX.test(v.trim())) return "Unesite ispravnu adresu (slova i brojevi, npr. Bulevar 45a).";
   return null;
 }
@@ -36,9 +34,9 @@ function isNameValid(v: string) { return v.trim().length >= 2 && !validateName(v
 function isPhoneValid(v: string) { return PHONE_REGEX.test(v); }
 function isAddressValid(v: string) { return v.trim().length >= 3 && !validateAddress(v); }
 
-function fieldBorderClass(value: string, isValid: boolean, error: string | null): string {
+function fieldBorderClass(value: string, isValid: boolean, hasError: boolean, showErrors: boolean): string {
   if (!value) return "border-border";
-  if (error) return "border-red-500 ring-1 ring-red-500/30";
+  if (showErrors && hasError) return "border-red-500 ring-1 ring-red-500/30";
   if (isValid) return "border-green-500/60 ring-1 ring-green-500/20";
   return "border-border";
 }
@@ -48,6 +46,7 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [showErrors, setShowErrors] = useState(false);
 
   const [deliveryTime] = useState(() => Math.floor(Math.random() * 11) + 15);
 
@@ -74,7 +73,6 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
-    // Allow only letters and single spaces
     const filtered = val.replace(/[^a-zA-ZčćšžđČĆŠŽĐ\s]/g, "").replace(/\s{2,}/g, " ");
     setName(filtered);
   };
@@ -87,11 +85,15 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formValid) return;
+    if (!formValid) {
+      setShowErrors(true);
+      return;
+    }
     setSubmitted(true);
     setTimeout(() => {
       onSubmit();
       setSubmitted(false);
+      setShowErrors(false);
       setName("");
       setPhone("");
       setAddress("");
@@ -122,20 +124,18 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
               </button>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Name */}
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-muted-foreground">Ime</label>
                 <input
                   required
                   value={name}
                   onChange={handleNameChange}
-                  className={`${inputBase} ${fieldBorderClass(name, nameOk, nameError)}`}
+                  className={`${inputBase} ${fieldBorderClass(name, nameOk, !!nameError, showErrors)}`}
                   placeholder="Vaše ime"
                 />
-                {nameError && <p className="mt-1 text-xs text-red-500">{nameError}</p>}
+                {showErrors && nameError && <p className="mt-1 text-xs text-red-500">{nameError}</p>}
               </div>
 
-              {/* Phone */}
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-muted-foreground">Telefon</label>
                 <input
@@ -144,13 +144,12 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
                   inputMode="numeric"
                   value={phone}
                   onChange={handlePhoneChange}
-                  className={`${inputBase} ${fieldBorderClass(phone, phoneOk, phoneError)}`}
+                  className={`${inputBase} ${fieldBorderClass(phone, phoneOk, !!phoneError, showErrors)}`}
                   placeholder="06x xxx xxxx"
                 />
-                {phoneError && <p className="mt-1 text-xs text-red-500">{phoneError}</p>}
+                {showErrors && phoneError && <p className="mt-1 text-xs text-red-500">{phoneError}</p>}
               </div>
 
-              {/* Address */}
               {deliveryMode === "delivery" && (
                 <div>
                   <label className="mb-1.5 block text-sm font-medium text-muted-foreground">Adresa za dostavu</label>
@@ -158,14 +157,13 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
                     required
                     value={address}
                     onChange={handleAddressChange}
-                    className={`${inputBase} ${fieldBorderClass(address, addressOk, addressError)}`}
+                    className={`${inputBase} ${fieldBorderClass(address, addressOk, !!addressError, showErrors)}`}
                     placeholder="Ulica i broj"
                   />
-                  {addressError && <p className="mt-1 text-xs text-red-500">{addressError}</p>}
+                  {showErrors && addressError && <p className="mt-1 text-xs text-red-500">{addressError}</p>}
                 </div>
               )}
 
-              {/* Delivery time estimate */}
               {deliveryMode === "delivery" && addressOk && (
                 <div className="flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-2 text-sm">
                   <Clock className="h-4 w-4 text-primary" />
@@ -174,7 +172,6 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
                 </div>
               )}
 
-              {/* Total */}
               <div className="flex items-center justify-between rounded-lg bg-muted p-3">
                 <span className="font-medium text-muted-foreground">Ukupno</span>
                 <span className="text-xl font-bold text-primary">{total + (deliveryMode === "delivery" ? 250 : 0)} RSD</span>
@@ -182,8 +179,7 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
 
               <button
                 type="submit"
-                disabled={!formValid}
-                className="glow-primary w-full rounded-xl bg-primary py-3.5 text-lg font-bold text-primary-foreground transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
+                className="glow-primary w-full rounded-xl bg-primary py-3.5 text-lg font-bold text-primary-foreground transition-all hover:opacity-90 active:scale-[0.98]"
               >
                 Potvrdi narudžbinu
               </button>
