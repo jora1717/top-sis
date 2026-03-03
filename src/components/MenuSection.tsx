@@ -7,9 +7,11 @@ interface MenuSectionProps {
   onAddWithToppings?: (item: MenuItem) => void;
 }
 
+const CATEGORIES_WITH_TOPPINGS = ["pljeskavice", "sis", "ostali"];
+
 export function MenuSection({ category, onAddItem, onAddWithToppings }: MenuSectionProps) {
   const handleClick = (item: MenuItem) => {
-    if (item.category === "pljeskavice" && onAddWithToppings) {
+    if (CATEGORIES_WITH_TOPPINGS.includes(item.category) && onAddWithToppings) {
       onAddWithToppings(item);
     } else {
       onAddItem(item);
@@ -26,12 +28,12 @@ export function MenuSection({ category, onAddItem, onAddWithToppings }: MenuSect
             onClick={() => handleClick(item)}
             className="food-card-shadow group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/40 hover:bg-muted active:scale-[0.98]"
           >
-            <div className="relative aspect-square w-full bg-muted">
+            <div className="relative aspect-square w-full overflow-hidden bg-muted">
               {item.image ? (
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                   loading="lazy"
                 />
               ) : (
@@ -45,6 +47,9 @@ export function MenuSection({ category, onAddItem, onAddWithToppings }: MenuSect
             </div>
             <div className="p-3 text-left">
               <p className="text-sm font-medium text-card-foreground leading-tight">{item.name}</p>
+              {item.description && (
+                <p className="mt-0.5 text-xs text-muted-foreground leading-snug line-clamp-2">{item.description}</p>
+              )}
               <p className="mt-1 text-base font-bold text-primary">{item.price} RSD</p>
             </div>
           </button>
