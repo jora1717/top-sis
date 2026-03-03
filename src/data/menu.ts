@@ -1,6 +1,7 @@
 export interface MenuItem {
   id: string;
   name: string;
+  description?: string;
   price: number;
   category: string;
   image?: string;
@@ -16,7 +17,7 @@ export interface MenuCategory {
 
 export const AVAILABLE_TOPPINGS = [
   "Kupus", "Zelena salata", "Majonez", "Pavlaka",
-  "Kečap", "Senf", "Luk", "Urnebes", "Tucana"
+  "Kečap", "Senf", "Luk", "Urnebes", "Tucana", "Vegeta"
 ];
 
 import sisImg from "@/assets/sis-hero.webp";
@@ -50,10 +51,10 @@ export const menuCategories: MenuCategory[] = [
     name: "Šiš specijaliteti",
     image: sisImg,
     items: [
-      { id: "sis-1", name: "Veliki šiš", price: 390, category: "sis", image: velikiSisImg },
-      { id: "sis-2", name: "Srednji šiš", price: 350, category: "sis", image: srednjiSisImg },
-      { id: "sis-3", name: "Mali šiš", price: 310, category: "sis", image: maliSisImg },
-      { id: "sis-4", name: "Punjeni šiš", price: 420, category: "sis", image: punjeniSisImg },
+      { id: "sis-1", name: "Veliki šiš", description: "Sočni šiš ćevapi sa roštilja, velika porcija", price: 390, category: "sis", image: velikiSisImg },
+      { id: "sis-2", name: "Srednji šiš", description: "Klasični šiš ćevapi, srednja porcija", price: 350, category: "sis", image: srednjiSisImg },
+      { id: "sis-3", name: "Mali šiš", description: "Manja porcija šiš ćevapa za brzi obrok", price: 310, category: "sis", image: maliSisImg },
+      { id: "sis-4", name: "Punjeni šiš", description: "Šiš punjen kajmakom i začinima", price: 420, category: "sis", image: punjeniSisImg },
     ],
   },
   {
@@ -61,11 +62,11 @@ export const menuCategories: MenuCategory[] = [
     name: "Pljeskavice",
     image: pljeskavicaImg,
     items: [
-      { id: "plj-1", name: "Velika pljeskavica", price: 400, category: "pljeskavice", image: velikaPljImg },
-      { id: "plj-2", name: "Mala pljeskavica", price: 320, category: "pljeskavice", image: malaPljImg },
-      { id: "plj-3", name: "Gurmanska pljeskavica", price: 450, category: "pljeskavice", image: gurmanskaPljImg },
-      { id: "plj-4", name: "Punjena pljeskavica", price: 470, category: "pljeskavice", image: punjenaPljImg },
-      { id: "plj-5", name: "Leskovačka pljeskavica", price: 430, category: "pljeskavice", image: leskovackaPljImg },
+      { id: "plj-1", name: "Velika pljeskavica", description: "Domaća pljeskavica od mešanog mesa, 200g", price: 400, category: "pljeskavice", image: velikaPljImg },
+      { id: "plj-2", name: "Mala pljeskavica", description: "Klasična pljeskavica, savršena za užinu", price: 320, category: "pljeskavice", image: malaPljImg },
+      { id: "plj-3", name: "Gurmanska pljeskavica", description: "Premium pljeskavica sa sirom i začinima", price: 450, category: "pljeskavice", image: gurmanskaPljImg },
+      { id: "plj-4", name: "Punjena pljeskavica", description: "Pljeskavica punjena kajmakom i sirom", price: 470, category: "pljeskavice", image: punjenaPljImg },
+      { id: "plj-5", name: "Leskovačka pljeskavica", description: "Tradicionalna leskovačka sa lukom i ajvarom", price: 430, category: "pljeskavice", image: leskovackaPljImg },
     ],
   },
   {
@@ -73,8 +74,8 @@ export const menuCategories: MenuCategory[] = [
     name: "Ostali specijaliteti",
     image: glavnaJelaImg,
     items: [
-      { id: "glv-1", name: "Pohovano belo", price: 400, category: "ostali", image: pohovanoBelo },
-      { id: "glv-2", name: "Punjena vešalica", price: 410, category: "ostali", image: punjenaVesalica },
+      { id: "glv-1", name: "Pohovano belo", description: "Hrskavo pohovano pileće belo meso", price: 400, category: "ostali", image: pohovanoBelo },
+      { id: "glv-2", name: "Punjena vešalica", description: "Vešalica punjena sirom i šunkom", price: 410, category: "ostali", image: punjenaVesalica },
     ],
   },
   {
@@ -82,8 +83,8 @@ export const menuCategories: MenuCategory[] = [
     name: "Palačinke",
     image: glavnaJelaImg,
     items: [
-      { id: "pal-1", name: "Slana palačinka", price: 350, category: "palacinke", image: slanaPalacinka },
-      { id: "pal-2", name: "Slatka palačinka", price: 360, category: "palacinke", image: slatkaPalacinka },
+      { id: "pal-1", name: "Slana palačinka", description: "Palačinka sa šunkom, sirom i povrćem", price: 350, category: "palacinke", image: slanaPalacinka },
+      { id: "pal-2", name: "Slatka palačinka", description: "Palačinka sa nutellom, bananom ili džemom", price: 360, category: "palacinke", image: slatkaPalacinka },
     ],
   },
   {
@@ -91,8 +92,8 @@ export const menuCategories: MenuCategory[] = [
     name: "Prilozi",
     image: pomfritImg,
     items: [
-      { id: "prl-1", name: "Pomfrit veliki", price: 300, category: "prilozi", image: pomfritItemImg },
-      { id: "prl-2", name: "Pomfrit mali", price: 200, category: "prilozi", image: pomfritItemImg },
+      { id: "prl-1", name: "Pomfrit veliki", description: "Velika porcija hrskavog pomfrita", price: 300, category: "prilozi", image: pomfritItemImg },
+      { id: "prl-2", name: "Pomfrit mali", description: "Mala porcija pomfrita", price: 200, category: "prilozi", image: pomfritItemImg },
     ],
   },
   {
@@ -100,9 +101,9 @@ export const menuCategories: MenuCategory[] = [
     name: "Osveženje",
     image: osvezenjeImg,
     items: [
-      { id: "osv-1", name: "Coca Cola", price: 110, category: "osvezenje", image: cocaColaImg },
-      { id: "osv-2", name: "Fanta", price: 110, category: "osvezenje", image: fantaImg },
-      { id: "osv-3", name: "Sprite", price: 110, category: "osvezenje", image: spriteImg },
+      { id: "osv-1", name: "Coca Cola", description: "Osvežavajuća Coca Cola 0.5L", price: 110, category: "osvezenje", image: cocaColaImg },
+      { id: "osv-2", name: "Fanta", description: "Fanta sa ukusom pomorandže 0.5L", price: 110, category: "osvezenje", image: fantaImg },
+      { id: "osv-3", name: "Sprite", description: "Gazirano piće sa ukusom limuna 0.5L", price: 110, category: "osvezenje", image: spriteImg },
     ],
   },
 ];
