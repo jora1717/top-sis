@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { X, Check } from "lucide-react";
+import { useState, useMemo } from "react";
+import { X, Check, Clock } from "lucide-react";
 
 interface CheckoutModalProps {
   open: boolean;
@@ -9,16 +9,85 @@ interface CheckoutModalProps {
   onSubmit: () => void;
 }
 
+const SERBIAN_LETTERS = /^[a-zA-ZčćšžđČĆŠŽĐ]+$/;
+const NAME_REGEX = /^[a-zA-ZčćšžđČĆŠŽĐ]{2,}(\s[a-zA-ZčćšžđČĆŠŽĐ]{2,})?$/;
+const PHONE_REGEX = /^06\d{6,9}$/;
+const ADDRESS_REGEX = /^[a-zA-ZčćšžđČĆŠŽĐ0-9\s/]+$/;
+
+function validateName(v: string): string | null {
+  if (!v.trim()) return null;
+  if (!NAME_REGEX.test(v.trim())) return "Ime i prezime mogu sadržati samo slova.";
+  return null;
+}
+
+function validatePhone(v: string): string | null {
+  if (!v) return null;
+  if (!PHONE_REGEX.test(v)) return "Unesite ispravan broj telefona (npr. 0641234567).";
+  return null;
+}
+
+function validateAddress(v: string): string | null {
+  if (!v.trim()) return null;
+  if (!ADDRESS_REGEX.test(v.trim())) return "Unesite ispravnu adresu (slova i brojevi, npr. Bulevar 45a).";
+  return null;
+}
+
+function isNameValid(v: string) { return v.trim().length >= 2 && !validateName(v); }
+function isPhoneValid(v: string) { return PHONE_REGEX.test(v); }
+function isAddressValid(v: string) { return v.trim().length >= 3 && !validateAddress(v); }
+
+function fieldBorderClass(value: string, isValid: boolean, error: string | null): string {
+  if (!value) return "border-border";
+  if (error) return "border-red-500 ring-1 ring-red-500/30";
+  if (isValid) return "border-green-500/60 ring-1 ring-green-500/20";
+  return "border-border";
+}
+
 export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: CheckoutModalProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  const [deliveryTime] = useState(() => Math.floor(Math.random() * 11) + 15);
+
+  const nameError = validateName(name);
+  const phoneError = validatePhone(phone);
+  const addressError = validateAddress(address);
+
+  const nameOk = isNameValid(name);
+  const phoneOk = isPhoneValid(phone);
+  const addressOk = isAddressValid(address);
+
+  const formValid = useMemo(() => {
+    if (!nameOk || !phoneOk) return false;
+    if (deliveryMode === "delivery" && !addressOk) return false;
+    return true;
+  }, [nameOk, phoneOk, addressOk, deliveryMode]);
+
   if (!open) return null;
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digits = e.target.value.replace(/\D/g, "");
+    setPhone(digits.slice(0, 11));
+  };
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    // Allow only letters and single spaces
+    const filtered = val.replace(/[^a-zA-ZčćšžđČĆŠŽĐ\s]/g, "").replace(/\s{2,}/g, " ");
+    setName(filtered);
+  };
+
+  const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    const filtered = val.replace(/[^a-zA-ZčćšžđČĆŠŽĐ0-9\s/]/g, "");
+    setAddress(filtered);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formValid) return;
     setSubmitted(true);
     setTimeout(() => {
       onSubmit();
@@ -28,6 +97,8 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
       setAddress("");
     }, 2000);
   };
+
+  const inputBase = "w-full rounded-lg bg-input px-4 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-colors border";
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center bg-background/70 backdrop-blur-sm p-4">
@@ -51,46 +122,68 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
               </button>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Name */}
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-muted-foreground">Ime</label>
                 <input
                   required
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-lg border border-border bg-input px-4 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  onChange={handleNameChange}
+                  className={`${inputBase} ${fieldBorderClass(name, nameOk, nameError)}`}
                   placeholder="Vaše ime"
                 />
+                {nameError && <p className="mt-1 text-xs text-red-500">{nameError}</p>}
               </div>
+
+              {/* Phone */}
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-muted-foreground">Telefon</label>
                 <input
                   required
                   type="tel"
+                  inputMode="numeric"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full rounded-lg border border-border bg-input px-4 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  onChange={handlePhoneChange}
+                  className={`${inputBase} ${fieldBorderClass(phone, phoneOk, phoneError)}`}
                   placeholder="06x xxx xxxx"
                 />
+                {phoneError && <p className="mt-1 text-xs text-red-500">{phoneError}</p>}
               </div>
+
+              {/* Address */}
               {deliveryMode === "delivery" && (
                 <div>
                   <label className="mb-1.5 block text-sm font-medium text-muted-foreground">Adresa za dostavu</label>
                   <input
                     required
                     value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    className="w-full rounded-lg border border-border bg-input px-4 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                    onChange={handleAddressChange}
+                    className={`${inputBase} ${fieldBorderClass(address, addressOk, addressError)}`}
                     placeholder="Ulica i broj"
                   />
+                  {addressError && <p className="mt-1 text-xs text-red-500">{addressError}</p>}
                 </div>
               )}
+
+              {/* Delivery time estimate */}
+              {deliveryMode === "delivery" && addressOk && (
+                <div className="flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-2 text-sm">
+                  <Clock className="h-4 w-4 text-primary" />
+                  <span className="text-muted-foreground">Vreme dostave:</span>
+                  <span className="font-semibold text-primary">{deliveryTime} min</span>
+                </div>
+              )}
+
+              {/* Total */}
               <div className="flex items-center justify-between rounded-lg bg-muted p-3">
                 <span className="font-medium text-muted-foreground">Ukupno</span>
                 <span className="text-xl font-bold text-primary">{total + (deliveryMode === "delivery" ? 250 : 0)} RSD</span>
               </div>
+
               <button
                 type="submit"
-                className="glow-primary w-full rounded-xl bg-primary py-3.5 text-lg font-bold text-primary-foreground transition-all hover:opacity-90 active:scale-[0.98]"
+                disabled={!formValid}
+                className="glow-primary w-full rounded-xl bg-primary py-3.5 text-lg font-bold text-primary-foreground transition-all hover:opacity-90 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100"
               >
                 Potvrdi narudžbinu
               </button>
