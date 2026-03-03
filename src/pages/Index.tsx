@@ -57,7 +57,7 @@ const Index = () => {
       </main>
 
       {/* O nama */}
-      <section id="o-nama" className="border-t border-border bg-card py-12">
+      <section id="o-nama" className="scroll-mt-28 border-t border-border bg-card py-12">
         <div className="container">
           <h2 className="mb-4 text-2xl font-bold">O nama</h2>
           <p className="max-w-2xl text-muted-foreground leading-relaxed">
@@ -69,7 +69,7 @@ const Index = () => {
       </section>
 
       {/* Lokacija */}
-      <section id="lokacija" className="border-t border-border py-12">
+      <section id="lokacija" className="scroll-mt-28 border-t border-border py-12">
         <div className="container">
           <h2 className="mb-4 text-2xl font-bold">Lokacija</h2>
           <div className="flex items-center gap-2 mb-4 text-muted-foreground">
@@ -92,7 +92,7 @@ const Index = () => {
       </section>
 
       {/* Kontakt */}
-      <section id="kontakt" className="border-t border-border bg-card py-12">
+      <section id="kontakt" className="scroll-mt-28 border-t border-border bg-card py-12">
         <div className="container">
           <h2 className="mb-6 text-2xl font-bold">Kontakt</h2>
           <div className="grid gap-4 sm:grid-cols-3">
