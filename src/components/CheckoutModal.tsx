@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { X, Check, Clock } from "lucide-react";
+import { X, Check } from "lucide-react";
 
 interface CheckoutModalProps {
   open: boolean;
