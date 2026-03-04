@@ -1,10 +1,13 @@
 import { useState, useMemo } from "react";
 import { X, Check } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import type { CartItem } from "@/hooks/useCart";
 
 interface CheckoutModalProps {
   open: boolean;
   onClose: () => void;
   total: number;
+  items: CartItem[];
   deliveryMode: "delivery" | "pickup";
   onSubmit: () => void;
 }
@@ -41,7 +44,7 @@ function fieldBorderClass(value: string, isValid: boolean, hasError: boolean, sh
   return "border-border";
 }
 
-export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: CheckoutModalProps) {
+export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSubmit }: CheckoutModalProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
@@ -84,12 +87,48 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
     setAddress(filtered);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formValid) {
       setShowErrors(true);
       return;
     }
+
+    const deliveryFee = deliveryMode === "delivery" ? 250 : 0;
+
+    // Insert order into database
+    const { data: order, error: orderError } = await supabase
+      .from("orders")
+      .insert({
+        customer_name: name.trim(),
+        customer_phone: phone,
+        delivery_mode: deliveryMode,
+        delivery_address: deliveryMode === "delivery" ? address.trim() : null,
+        delivery_fee: deliveryFee,
+        total: total + deliveryFee,
+      })
+      .select("id")
+      .single();
+
+    if (orderError || !order) {
+      console.error("Order error:", orderError);
+      return;
+    }
+
+    // Insert order items
+    const orderItems = items.map((item) => ({
+      order_id: order.id,
+      item_name: item.name,
+      item_price: item.price,
+      quantity: item.quantity,
+      toppings: item.selectedToppings ?? null,
+    }));
+
+    const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
+    if (itemsError) {
+      console.error("Order items error:", itemsError);
+    }
+
     setSubmitted(true);
     setTimeout(() => {
       onSubmit();
