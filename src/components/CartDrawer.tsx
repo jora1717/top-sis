@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { X, Plus, Minus, ShoppingBag, Clock } from "lucide-react";
+import { X, Plus, Minus, ShoppingBag } from "lucide-react";
 import type { CartItem } from "@/hooks/useCart";
+
 
 interface CartDrawerProps {
   open: boolean;
@@ -16,7 +16,7 @@ interface CartDrawerProps {
 
 export function CartDrawer({ open, onClose, items, total, deliveryMode, onDeliveryModeChange, onAdd, onRemove, onCheckout }: CartDrawerProps) {
   const deliveryFee = deliveryMode === "delivery" ? 250 : 0;
-  const [deliveryTime] = useState(() => Math.floor(Math.random() * 11) + 15);
+
 
   return (
     <>
@@ -100,17 +100,10 @@ export function CartDrawer({ open, onClose, items, total, deliveryMode, onDelive
             </div>
             <div className="border-t border-border p-4">
               {deliveryMode === "delivery" && (
-                <>
-                  <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
-                    <span>Cena dostave:</span>
-                    <span>250 RSD</span>
-                  </div>
-                  <div className="mb-2 flex items-center gap-2 text-sm text-muted-foreground">
-                    <Clock className="h-4 w-4 text-primary" />
-                    <span>Vreme dostave:</span>
-                    <span className="font-semibold text-primary">{deliveryTime} min</span>
-                  </div>
-                </>
+                <div className="mb-2 flex items-center justify-between text-sm text-muted-foreground">
+                  <span>Cena dostave:</span>
+                  <span>250 RSD</span>
+                </div>
               )}
               <div className="mb-4 flex items-center justify-between text-lg font-bold">
                 <span>Ukupno:</span>

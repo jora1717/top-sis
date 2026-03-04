@@ -18,8 +18,15 @@ export function Header({ cartCount, onCartClick }: HeaderProps) {
 
   const handleNavClick = (href: string) => {
     setMobileMenuOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        const el = document.querySelector<HTMLElement>(href);
+        if (!el) return;
+        const headerHeight = document.querySelector("header")?.getBoundingClientRect().height ?? 0;
+        const top = el.getBoundingClientRect().top + window.scrollY - (headerHeight + 16);
+        window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+      });
+    });
   };
 
   return (
