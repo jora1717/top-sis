@@ -47,6 +47,7 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
   const [address, setAddress] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
+  const [deliveryTime] = useState(() => Math.floor(Math.random() * 11) + 15);
 
   
 

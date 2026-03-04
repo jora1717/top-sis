@@ -1,6 +1,6 @@
 import { X, Plus, Minus, ShoppingBag } from "lucide-react";
 import type { CartItem } from "@/hooks/useCart";
-import type { CartItem } from "@/hooks/useCart";
+
 
 interface CartDrawerProps {
   open: boolean;
