@@ -169,6 +169,7 @@ const Index = () => {
         open={checkoutOpen}
         onClose={() => setCheckoutOpen(false)}
         total={cart.total}
+        items={cart.items}
         deliveryMode={deliveryMode}
         onSubmit={() => {
           cart.clearCart();
