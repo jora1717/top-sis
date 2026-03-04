@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { X, Check, Clock } from "lucide-react";
+import { X, Check } from "lucide-react";
 
 interface CheckoutModalProps {
   open: boolean;
@@ -48,7 +48,7 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
   const [submitted, setSubmitted] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
-  const [deliveryTime] = useState(() => Math.floor(Math.random() * 11) + 15);
+  
 
   const nameError = validateName(name);
   const phoneError = validatePhone(phone);
@@ -164,13 +164,8 @@ export function CheckoutModal({ open, onClose, total, deliveryMode, onSubmit }: 
                 </div>
               )}
 
-              {deliveryMode === "delivery" && addressOk && (
-                <div className="flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-2 text-sm">
-                  <Clock className="h-4 w-4 text-primary" />
-                  <span className="text-muted-foreground">Vreme dostave:</span>
-                  <span className="font-semibold text-primary">{deliveryTime} min</span>
-                </div>
-              )}
+
+
 
               <div className="flex items-center justify-between rounded-lg bg-muted p-3">
                 <span className="font-medium text-muted-foreground">Ukupno</span>
