@@ -14,10 +14,25 @@ import { Input } from "@/components/ui/input";
 
 const Index = () => {
   const cart = useCart();
+  const navigate = useNavigate();
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [deliveryMode, setDeliveryMode] = useState<"delivery" | "pickup">("delivery");
   const [toppingsItem, setToppingsItem] = useState<MenuItem | null>(null);
+  const [adminDialogOpen, setAdminDialogOpen] = useState(false);
+  const [adminPassword, setAdminPassword] = useState("");
+  const [adminError, setAdminError] = useState("");
+
+  const handleAdminSubmit = () => {
+    if (adminPassword === "adminsis") {
+      setAdminDialogOpen(false);
+      setAdminPassword("");
+      setAdminError("");
+      navigate("/admin");
+    } else {
+      setAdminError("Pogrešna lozinka.");
+    }
+  };
 
   const handleAddWithToppings = (item: MenuItem) => {
     setToppingsItem(item);
