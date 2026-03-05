@@ -8,13 +8,31 @@ import { useCart } from "@/hooks/useCart";
 import { menuCategories, type MenuItem } from "@/data/menu";
 import heroImg from "@/assets/sis-hero.webp";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 const Index = () => {
   const cart = useCart();
+  const navigate = useNavigate();
   const [cartOpen, setCartOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [deliveryMode, setDeliveryMode] = useState<"delivery" | "pickup">("delivery");
   const [toppingsItem, setToppingsItem] = useState<MenuItem | null>(null);
+  const [adminDialogOpen, setAdminDialogOpen] = useState(false);
+  const [adminPassword, setAdminPassword] = useState("");
+  const [adminError, setAdminError] = useState("");
+
+  const handleAdminSubmit = () => {
+    if (adminPassword === "adminsis") {
+      setAdminDialogOpen(false);
+      setAdminPassword("");
+      setAdminError("");
+      navigate("/admin");
+    } else {
+      setAdminError("Pogrešna lozinka.");
+    }
+  };
 
   const handleAddWithToppings = (item: MenuItem) => {
     setToppingsItem(item);
@@ -127,8 +145,42 @@ const Index = () => {
           <p>© {new Date().getFullYear()} Top Šiš Fast Food. Sva prava zadržana.</p>
           <p>Strugarska 1a · +381 XX XXX XXXX · info@topsis.rs</p>
           <p className="text-xs">Cene su izražene u RSD. Dostava se naplaćuje dodatno.</p>
+          <button
+            onClick={() => { setAdminDialogOpen(true); setAdminPassword(""); setAdminError(""); }}
+            className="mt-2 text-xs text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+          >
+            Admin
+          </button>
         </div>
       </footer>
+
+      {/* Admin password dialog */}
+      <Dialog open={adminDialogOpen} onOpenChange={setAdminDialogOpen}>
+        <DialogContent className="max-w-sm">
+          <DialogHeader>
+            <DialogTitle>Admin pristup</DialogTitle>
+          </DialogHeader>
+          <form
+            onSubmit={(e) => { e.preventDefault(); handleAdminSubmit(); }}
+            className="space-y-4"
+          >
+            <Input
+              type="password"
+              placeholder="Unesite lozinku"
+              value={adminPassword}
+              onChange={(e) => { setAdminPassword(e.target.value); setAdminError(""); }}
+              autoFocus
+            />
+            {adminError && <p className="text-sm text-destructive">{adminError}</p>}
+            <button
+              type="submit"
+              className="w-full rounded-lg bg-primary px-4 py-2 font-semibold text-primary-foreground hover:opacity-90 active:scale-95 transition-all"
+            >
+              Pristupi
+            </button>
+          </form>
+        </DialogContent>
+      </Dialog>
 
       {/* Sticky Cart Bar (mobile) */}
       {cart.count > 0 && !cartOpen &&
