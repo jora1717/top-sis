@@ -16,36 +16,36 @@ export type Database = {
     Tables: {
       order_items: {
         Row: {
-          created_at: string
+          cena_stavke: number
+          dodaci: string[] | null
           id: string
-          item_name: string
-          item_price: number
-          order_id: string
-          quantity: number
-          toppings: string[] | null
+          kolicina: number
+          kreirano: string
+          narudzbina_id: string
+          naziv_stavke: string
         }
         Insert: {
-          created_at?: string
+          cena_stavke: number
+          dodaci?: string[] | null
           id?: string
-          item_name: string
-          item_price: number
-          order_id: string
-          quantity: number
-          toppings?: string[] | null
+          kolicina: number
+          kreirano?: string
+          narudzbina_id: string
+          naziv_stavke: string
         }
         Update: {
-          created_at?: string
+          cena_stavke?: number
+          dodaci?: string[] | null
           id?: string
-          item_name?: string
-          item_price?: number
-          order_id?: string
-          quantity?: number
-          toppings?: string[] | null
+          kolicina?: number
+          kreirano?: string
+          narudzbina_id?: string
+          naziv_stavke?: string
         }
         Relationships: [
           {
-            foreignKeyName: "order_items_order_id_fkey"
-            columns: ["order_id"]
+            foreignKeyName: "order_items_narudzbina_id_fkey"
+            columns: ["narudzbina_id"]
             isOneToOne: false
             referencedRelation: "orders"
             referencedColumns: ["id"]
@@ -54,37 +54,37 @@ export type Database = {
       }
       orders: {
         Row: {
-          created_at: string
-          customer_name: string
-          customer_phone: string
-          delivery_address: string | null
-          delivery_fee: number
-          delivery_mode: string
+          adresa_dostave: string | null
+          cena_dostave: number
           id: string
+          ime_kupca: string
+          kreirano: string
+          nacin_dostave: string
           status: string
-          total: number
+          telefon: string
+          ukupno: number
         }
         Insert: {
-          created_at?: string
-          customer_name: string
-          customer_phone: string
-          delivery_address?: string | null
-          delivery_fee?: number
-          delivery_mode: string
+          adresa_dostave?: string | null
+          cena_dostave?: number
           id?: string
+          ime_kupca: string
+          kreirano?: string
+          nacin_dostave: string
           status?: string
-          total: number
+          telefon: string
+          ukupno: number
         }
         Update: {
-          created_at?: string
-          customer_name?: string
-          customer_phone?: string
-          delivery_address?: string | null
-          delivery_fee?: number
-          delivery_mode?: string
+          adresa_dostave?: string | null
+          cena_dostave?: number
           id?: string
+          ime_kupca?: string
+          kreirano?: string
+          nacin_dostave?: string
           status?: string
-          total?: number
+          telefon?: string
+          ukupno?: number
         }
         Relationships: []
       }
@@ -93,7 +93,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_short_id: { Args: never; Returns: string }
     }
     Enums: {
       [_ in never]: never
