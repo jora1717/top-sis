@@ -106,6 +106,7 @@ export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSub
         adresa_dostave: deliveryMode === "delivery" ? address.trim() : null,
         cena_dostave: deliveryFee,
         ukupno: total + deliveryFee,
+        vreme_dostave: deliveryTime,
       })
       .select("id")
       .single();
