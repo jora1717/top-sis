@@ -8,6 +8,9 @@ import { useCart } from "@/hooks/useCart";
 import { menuCategories, type MenuItem } from "@/data/menu";
 import heroImg from "@/assets/sis-hero.webp";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 const Index = () => {
   const cart = useCart();
