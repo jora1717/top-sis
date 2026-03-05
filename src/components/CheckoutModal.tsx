@@ -100,12 +100,12 @@ export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSub
     const { data: order, error: orderError } = await supabase
       .from("orders")
       .insert({
-        customer_name: name.trim(),
-        customer_phone: phone,
-        delivery_mode: deliveryMode,
-        delivery_address: deliveryMode === "delivery" ? address.trim() : null,
-        delivery_fee: deliveryFee,
-        total: total + deliveryFee,
+        ime_kupca: name.trim(),
+        telefon: phone,
+        nacin_dostave: deliveryMode,
+        adresa_dostave: deliveryMode === "delivery" ? address.trim() : null,
+        cena_dostave: deliveryFee,
+        ukupno: total + deliveryFee,
       })
       .select("id")
       .single();
@@ -117,11 +117,11 @@ export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSub
 
     // Insert order items
     const orderItems = items.map((item) => ({
-      order_id: order.id,
-      item_name: item.name,
-      item_price: item.price,
-      quantity: item.quantity,
-      toppings: item.selectedToppings ?? null,
+      narudzbina_id: order.id,
+      naziv_stavke: item.name,
+      cena_stavke: item.price,
+      kolicina: item.quantity,
+      dodaci: item.selectedToppings ?? null,
     }));
 
     const { error: itemsError } = await supabase.from("order_items").insert(orderItems);
