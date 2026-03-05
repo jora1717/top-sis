@@ -63,6 +63,7 @@ export type Database = {
           status: string
           telefon: string
           ukupno: number
+          vreme_dostave: number | null
         }
         Insert: {
           adresa_dostave?: string | null
@@ -74,6 +75,7 @@ export type Database = {
           status?: string
           telefon: string
           ukupno: number
+          vreme_dostave?: number | null
         }
         Update: {
           adresa_dostave?: string | null
@@ -85,6 +87,7 @@ export type Database = {
           status?: string
           telefon?: string
           ukupno?: number
+          vreme_dostave?: number | null
         }
         Relationships: []
       }

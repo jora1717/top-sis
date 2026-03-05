@@ -21,6 +21,7 @@ interface Order {
   ukupno: number;
   status: string;
   kreirano: string;
+  vreme_dostave: number | null;
   order_items: OrderItem[];
 }
 
@@ -146,8 +147,8 @@ export default function Admin() {
 
             {/* Delivery time */}
             <div className="text-sm text-muted-foreground">
-              <span className="font-medium text-foreground">Dostava: </span>
-              {order.nacin_dostave === "delivery" ? "30-45 min" : "15-20 min (preuzimanje)"}
+              <span className="font-medium text-foreground">Vreme dostave: </span>
+              {order.vreme_dostave ? `${order.vreme_dostave} min` : "—"}
             </div>
 
             {/* Items */}
