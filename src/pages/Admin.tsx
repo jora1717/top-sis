@@ -21,6 +21,7 @@ interface Order {
   ukupno: number;
   status: string;
   kreirano: string;
+  vreme_dostave: number | null;
   order_items: OrderItem[];
 }
 
