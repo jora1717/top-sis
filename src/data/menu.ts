@@ -75,7 +75,7 @@ export const menuCategories: MenuCategory[] = [
     image: glavnaJelaImg,
     items: [
       { id: "glv-1", name: "Pileće belo", description: "250g pilećeg filea", price: 400, category: "ostali", image: pohovanoBelo },
-      { id: "glv-2", name: "Punjena vešalica", description: "250g vešalice punjene sirom i šunkom", price: 410, category: "ostali", image: punjenaVesalica },
+      { id: "glv-2", name: "Bela vešalica", description: "250g vešalice", price: 410, category: "ostali", image: punjenaVesalica },
     ],
   },
   {
