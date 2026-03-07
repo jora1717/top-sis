@@ -190,7 +190,7 @@ export default function Admin() {
                   Prihvati porudžbinu
                 </button>
               )}
-              {(order.status === "na_cekanju" || order.status === "prihvacena") && (
+              {order.status === "prihvacena" && (
                 <button
                   onClick={() => updateStatus(order.id, "zavrsena")}
                   className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-semibold text-white hover:bg-green-700 active:scale-95 transition-all"
