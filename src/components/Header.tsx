@@ -32,12 +32,12 @@ export function Header({ cartCount, onCartClick }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 border-b border-border backdrop-blur-md" style={{ backgroundColor: '#110d0c' }}>
       <div className="container flex h-24 items-center justify-between">
-        <div className="flex items-center gap-2">
+        <button onClick={() => window.location.href = "/"} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <img alt="Top Šiš Fast Food logo" className="h-20 w-20 object-contain" src="/lovable-uploads/ea1247f1-76ef-41f6-af1f-68afea8b61b1.png" />
           <h1 className="text-xl font-bold tracking-tight">
             Top Šiš <span className="text-primary">Fast Food</span>
           </h1>
-        </div>
+        </button>
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-6 md:flex">
