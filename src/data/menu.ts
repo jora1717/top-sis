@@ -6,6 +6,7 @@ export interface MenuItem {
   category: string;
   image?: string;
   toppings?: string[];
+  recommended?: boolean;
 }
 
 export interface MenuCategory {
@@ -54,10 +55,10 @@ export const menuCategories: MenuCategory[] = [
     name: "Šiš specijaliteti",
     image: sisImg,
     items: [
-      { id: "sis-1", name: "Veliki šiš", description: "250g roštilj mesa, somun", price: 390, category: "sis", image: velikiSisImg },
-      { id: "sis-2", name: "Srednji šiš", description: "200g roštilj mesa, somun", price: 350, category: "sis", image: srednjiSisImg },
-      { id: "sis-3", name: "Mali šiš", description: "150g roštilj mesa, somun", price: 310, category: "sis", image: maliSisImg },
-      { id: "sis-4", name: "Punjeni šiš", description: "250g roštilj mesa punjeno topljenim sirom, somun", price: 420, category: "sis", image: punjeniSisImg },
+       { id: "sis-1", name: "Veliki šiš", description: "250g roštilj mesa, somun", price: 390, category: "sis", image: velikiSisImg },
+       { id: "sis-2", name: "Srednji šiš", description: "200g roštilj mesa, somun", price: 350, category: "sis", image: srednjiSisImg },
+       { id: "sis-3", name: "Mali šiš", description: "150g roštilj mesa, somun", price: 310, category: "sis", image: maliSisImg },
+       { id: "sis-4", name: "Punjeni šiš", description: "250g roštilj mesa punjeno topljenim sirom, somun", price: 420, category: "sis", image: punjeniSisImg, recommended: true },
     ],
   },
   {
@@ -65,11 +66,11 @@ export const menuCategories: MenuCategory[] = [
     name: "Pljeskavice",
     image: pljeskavicaImg,
     items: [
-      { id: "plj-1", name: "Velika pljeskavica", description: "250g roštilj mesa, lepinja", price: 400, category: "pljeskavice", image: velikaPljImg },
-      { id: "plj-2", name: "Mala pljeskavica", description: "150g roštilj mesa, lepinja", price: 320, category: "pljeskavice", image: malaPljImg },
-      { id: "plj-3", name: "Gurmanska pljeskavica", description: "250g roštilj mesa puneno sa topljenim sirom i šunkom", price: 450, category: "pljeskavice", image: gurmanskaPljImg },
-      { id: "plj-4", name: "Punjena pljeskavica", description: "250g roštilj mesa puneno sa topljenim sirom, lepinja", price: 470, category: "pljeskavice", image: punjenaPljImg },
-      { id: "plj-5", name: "Leskovačka pljeskavica", description: "250g roštilj mesa pomešano sa crnim lukom i tucanom", price: 430, category: "pljeskavice", image: leskovackaPljImg },
+       { id: "plj-1", name: "Velika pljeskavica", description: "250g roštilj mesa, lepinja", price: 400, category: "pljeskavice", image: velikaPljImg },
+       { id: "plj-2", name: "Mala pljeskavica", description: "150g roštilj mesa, lepinja", price: 320, category: "pljeskavice", image: malaPljImg },
+       { id: "plj-3", name: "Gurmanska pljeskavica", description: "250g roštilj mesa puneno sa topljenim sirom i šunkom", price: 450, category: "pljeskavice", image: gurmanskaPljImg, recommended: true },
+       { id: "plj-4", name: "Punjena pljeskavica", description: "250g roštilj mesa puneno sa topljenim sirom, lepinja", price: 470, category: "pljeskavice", image: punjenaPljImg },
+       { id: "plj-5", name: "Leskovačka pljeskavica", description: "250g roštilj mesa pomešano sa crnim lukom i tucanom", price: 430, category: "pljeskavice", image: leskovackaPljImg },
     ],
   },
    {
@@ -78,7 +79,7 @@ export const menuCategories: MenuCategory[] = [
      image: glavnaJelaImg,
      items: [
        { id: "glv-1", name: "Pileće belo", description: "250g pilećeg filea", price: 400, category: "ostali", image: pohovanoBelo },
-       { id: "glv-2", name: "Bela vešalica", description: "250g vešalice", price: 410, category: "ostali", image: punjenaVesalica },
+       { id: "glv-2", name: "Bela vešalica", description: "250g vešalice", price: 410, category: "ostali", image: punjenaVesalica, recommended: true },
        { id: "glv-3", name: "Punjena vešalica", description: "250g vešalice punjene topljenim sirom i slaninom", price: 480, category: "ostali", image: punjenaNova },
        { id: "glv-4", name: "Bečka šnicla", description: "250g šnicla", price: 360, category: "ostali", image: beckaSnicla },
        { id: "glv-5", name: "Pileći batak", description: "200g bataka", price: 330, category: "ostali", image: pileciMatak },
