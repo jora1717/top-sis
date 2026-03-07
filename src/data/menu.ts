@@ -80,8 +80,8 @@ export const menuCategories: MenuCategory[] = [
        { id: "glv-1", name: "Pileće belo", description: "250g pilećeg filea", price: 400, category: "ostali", image: pohovanoBelo },
        { id: "glv-2", name: "Bela vešalica", description: "250g vešalice", price: 410, category: "ostali", image: punjenaVesalica },
        { id: "glv-3", name: "Punjena vešalica", description: "250g vešalice punjene topljenim sirom i slaninom", price: 480, category: "ostali", image: punjenaNova },
-       { id: "glv-4", name: "Bečka šnicla", description: "šnicla 250g", price: 360, category: "ostali", image: beckaSnicla },
-       { id: "glv-5", name: "Pileći batak", description: "batak 200g", price: 330, category: "ostali", image: pileciMatak },
+       { id: "glv-4", name: "Bečka šnicla", description: "250g šnicla", price: 360, category: "ostali", image: beckaSnicla },
+       { id: "glv-5", name: "Pileći batak", description: "200g bataka", price: 330, category: "ostali", image: pileciMatak },
      ],
    },
   {
