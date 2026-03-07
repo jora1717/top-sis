@@ -34,6 +34,9 @@ import punjenaPljImg from "@/assets/menu/punjena-pljeskavica.webp";
 import leskovackaPljImg from "@/assets/menu/leskovacka-pljeskavica.webp";
 import pohovanoBelo from "@/assets/menu/pohovano-belo.webp";
 import punjenaVesalica from "@/assets/menu/punjena-vesalica.webp";
+import punjenaNova from "@/assets/menu/punjena-vesalica-new.webp";
+import beckaSnicla from "@/assets/menu/becka-snicla.webp";
+import pileciMatak from "@/assets/menu/pileci-batak.webp";
 import slanaPalacinka from "@/assets/menu/slana-palacinka.webp";
 import slatkaPalacinka from "@/assets/menu/slatka-palacinka.webp";
 import pomfritItemImg from "@/assets/menu/pomfrit.webp";
@@ -69,15 +72,18 @@ export const menuCategories: MenuCategory[] = [
       { id: "plj-5", name: "Leskovačka pljeskavica", description: "250g roštilj mesa pomešano sa crnim lukom i tucanom", price: 430, category: "pljeskavice", image: leskovackaPljImg },
     ],
   },
-  {
-    id: "ostali",
-    name: "Ostali specijaliteti",
-    image: glavnaJelaImg,
-    items: [
-      { id: "glv-1", name: "Pileće belo", description: "250g pilećeg filea", price: 400, category: "ostali", image: pohovanoBelo },
-      { id: "glv-2", name: "Bela vešalica", description: "250g vešalice", price: 410, category: "ostali", image: punjenaVesalica },
-    ],
-  },
+   {
+     id: "ostali",
+     name: "Ostali specijaliteti",
+     image: glavnaJelaImg,
+     items: [
+       { id: "glv-1", name: "Pileće belo", description: "250g pilećeg filea", price: 400, category: "ostali", image: pohovanoBelo },
+       { id: "glv-2", name: "Bela vešalica", description: "250g vešalice", price: 410, category: "ostali", image: punjenaVesalica },
+       { id: "glv-3", name: "Punjena vešalica", description: "250g vešalice punjene topljenim sirom i slaninom", price: 480, category: "ostali", image: punjenaNova },
+       { id: "glv-4", name: "Bečka šnicla", description: "šnicla 250g", price: 360, category: "ostali", image: beckaSnicla },
+       { id: "glv-5", name: "Pileći batak", description: "batak 200g", price: 330, category: "ostali", image: pileciMatak },
+     ],
+   },
   {
     id: "palacinke",
     name: "Palačinke",
