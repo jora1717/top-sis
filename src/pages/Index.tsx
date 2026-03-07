@@ -132,7 +132,7 @@ const Index = () => {
               <Clock className="h-5 w-5 text-primary" />
               <div>
                 <p className="text-sm text-muted-foreground">Radno vreme</p>
-                <p className="font-medium">08:00 - 23:00</p>
+                <p className="font-medium">07:00 - 23:30</p>
               </div>
             </div>
           </div>
@@ -143,12 +143,12 @@ const Index = () => {
       <footer className="border-t border-border bg-muted py-8">
         <div className="container text-center text-sm text-muted-foreground space-y-2">
           <p>© {new Date().getFullYear()} Top Šiš Fast Food. Sva prava zadržana.</p>
-          <p>Strugarska 1a · +381 XX XXX XXXX · info@topsis.rs</p>
+          <p>Strugarska 1a · +381 64 5747 478 · info@topsis.rs</p>
           <p className="text-xs">Cene su izražene u RSD. Dostava se naplaćuje dodatno.</p>
           <button
-            onClick={() => { setAdminDialogOpen(true); setAdminPassword(""); setAdminError(""); }}
-            className="mt-2 text-xs text-muted-foreground/50 hover:text-muted-foreground transition-colors"
-          >
+            onClick={() => {setAdminDialogOpen(true);setAdminPassword("");setAdminError("");}}
+            className="mt-2 text-xs text-muted-foreground/50 hover:text-muted-foreground transition-colors">
+            
             Admin
           </button>
         </div>
@@ -161,21 +161,21 @@ const Index = () => {
             <DialogTitle>Admin pristup</DialogTitle>
           </DialogHeader>
           <form
-            onSubmit={(e) => { e.preventDefault(); handleAdminSubmit(); }}
-            className="space-y-4"
-          >
+            onSubmit={(e) => {e.preventDefault();handleAdminSubmit();}}
+            className="space-y-4">
+            
             <Input
               type="password"
               placeholder="Unesite lozinku"
               value={adminPassword}
-              onChange={(e) => { setAdminPassword(e.target.value); setAdminError(""); }}
-              autoFocus
-            />
+              onChange={(e) => {setAdminPassword(e.target.value);setAdminError("");}}
+              autoFocus />
+            
             {adminError && <p className="text-sm text-destructive">{adminError}</p>}
             <button
               type="submit"
-              className="w-full rounded-lg bg-primary px-4 py-2 font-semibold text-primary-foreground hover:opacity-90 active:scale-95 transition-all"
-            >
+              className="w-full rounded-lg bg-primary px-4 py-2 font-semibold text-primary-foreground hover:opacity-90 active:scale-95 transition-all">
+              
               Pristupi
             </button>
           </form>
