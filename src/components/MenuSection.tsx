@@ -42,8 +42,8 @@ export function MenuSection({ category, onAddItem, onAddWithToppings }: MenuSect
                  </div>
              }
                {item.recommended && (
-                 <div className="absolute top-2 right-2 flex items-center gap-1 bg-amber-500 text-white rounded-full px-2 py-1 text-xs font-semibold">
-                   <Star className="h-3 w-3 fill-white" />
+                 <div className="absolute top-2 right-2 flex items-center gap-1 bg-primary text-primary-foreground rounded-full px-2 py-1 text-xs font-semibold">
+                   <Star className="h-3 w-3 fill-primary-foreground" />
                    Preporučujemo
                  </div>
                )}
