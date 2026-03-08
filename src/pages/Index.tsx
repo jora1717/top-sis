@@ -76,6 +76,29 @@ const Index = () => {
         </div>
       </main>
 
+      {/* Zašto baš mi? */}
+      <section id="zasto-mi" className="scroll-mt-36 md:scroll-mt-28 border-t border-border py-16">
+        <div className="container">
+          <h2 className="mb-2 text-center text-2xl font-bold sm:text-3xl">Zašto baš mi?</h2>
+          <p className="mx-auto mb-10 max-w-lg text-center text-muted-foreground">Razlozi zašto nas naši gosti biraju iznova i iznova.</p>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { icon: "⏱️", title: "Štedimo vaše vreme", text: "Naš sajt je dizajniran tako da vas od ulaska do potvrđene narudžbine dele samo nekoliko klikova. Štedimo vaše vreme jer znamo koliko je dragoceno." },
+              { icon: "🚀", title: "Brza i efikasna dostava", text: "Fokusirani smo na maksimalnu brzinu kako bi vaša hrana stigla topla i sveža, direktno do vašeg praga ili kancelarije." },
+              { icon: "📋", title: "Jasna i pregledna ponuda", text: "Zaboravite na nepregledne i komplikovane menije. Kod nas je izbor brz, jednostavan i bez skrivenih komplikacija." },
+              { icon: "💰", title: "Vrhunski kvalitet po fer ceni", text: "Spajamo visok standard kvaliteta hrane sa cenama koje su prilagođene studentima i mladim zaposlenim ljudima." },
+              { icon: "🔒", title: "Transparentnost i sigurnost", text: "U svakom trenutku znate šta dobijate, koliko plaćate i kada vaša hrana stiže." },
+            ].map((item) => (
+              <div key={item.title} className="rounded-xl border border-border bg-card p-6 transition-shadow hover:food-card-shadow">
+                <span className="mb-3 block text-3xl">{item.icon}</span>
+                <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* O nama */}
       <section id="o-nama" className="scroll-mt-36 md:scroll-mt-28 border-t border-border bg-card py-12">
         <div className="container">
