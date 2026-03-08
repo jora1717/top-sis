@@ -12,7 +12,6 @@ import { ReviewBlock } from "@/components/ReviewBlock";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import LocationMap from "@/components/LocationMap";
 
 const Index = () => {
   const cart = useCart();
@@ -141,7 +140,14 @@ const Index = () => {
             <MapPin className="h-5 w-5 text-primary" />
             <span className="underline underline-offset-2">Strugarska 1a, Čukarička padina</span>
           </a>
-          <LocationMap />
+          <div className="overflow-hidden rounded-xl border border-border">
+            <iframe title="Top Šiš lokacija" src="https://maps.google.com/maps?q=Strugarska+1a+%C4%8Cukari%C4%8Dka+padina+Beograd&t=&z=17&ie=UTF8&iwloc=&output=embed" width="100%" height="350"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade" />
+
+          </div>
         </div>
       </section>
 
