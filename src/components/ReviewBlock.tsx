@@ -33,7 +33,7 @@ export function ReviewBlock() {
     const { error } = await supabase.from("reviews").insert({
       ime: name.trim(),
       komentar: comment.trim() || null,
-      ocena: rating,
+      ocena: rating
     });
     setSubmitting(false);
 
@@ -64,61 +64,61 @@ export function ReviewBlock() {
               <div
                 key={starIndex}
                 className="relative h-8 w-8 cursor-pointer"
-                onMouseLeave={() => setHoverRating(0)}
-              >
+                onMouseLeave={() => setHoverRating(0)}>
+                
                 {/* Left half */}
                 <div
                   className="absolute inset-y-0 left-0 w-1/2 z-10"
                   onMouseEnter={() => setHoverRating(halfValue)}
-                  onClick={() => handleStarClick(starIndex, true)}
-                />
+                  onClick={() => handleStarClick(starIndex, true)} />
+                
                 {/* Right half */}
                 <div
                   className="absolute inset-y-0 right-0 w-1/2 z-10"
                   onMouseEnter={() => setHoverRating(fullValue)}
-                  onClick={() => handleStarClick(starIndex, false)}
-                />
+                  onClick={() => handleStarClick(starIndex, false)} />
+                
                 {/* Star visual */}
                 <Star
                   className={`h-8 w-8 transition-colors ${
-                    activeRating >= fullValue
-                      ? "fill-primary text-primary"
-                      : activeRating >= halfValue
-                      ? "text-primary"
-                      : "text-muted-foreground/30"
-                  }`}
-                  style={
-                    activeRating >= halfValue && activeRating < fullValue
-                      ? {
-                          clipPath: "inset(0 50% 0 0)",
-                          position: "absolute",
-                          fill: "hsl(var(--primary))",
-                        }
-                      : undefined
+                  activeRating >= fullValue ?
+                  "fill-primary text-primary" :
+                  activeRating >= halfValue ?
+                  "text-primary" :
+                  "text-muted-foreground/30"}`
                   }
-                />
+                  style={
+                  activeRating >= halfValue && activeRating < fullValue ?
+                  {
+                    clipPath: "inset(0 50% 0 0)",
+                    position: "absolute",
+                    fill: "hsl(var(--primary))"
+                  } :
+                  undefined
+                  } />
+                
                 {/* Background star for half-fill */}
-                {activeRating >= halfValue && activeRating < fullValue && (
-                  <Star className="absolute inset-0 h-8 w-8 text-muted-foreground/30" />
-                )}
-              </div>
-            );
+                {activeRating >= halfValue && activeRating < fullValue &&
+                <Star className="absolute inset-0 h-8 w-8 text-muted-foreground/30" />
+                }
+              </div>);
+
           })}
-          {rating > 0 && (
-            <span className="ml-2 text-sm font-semibold text-primary">{rating}/5</span>
-          )}
+          {rating > 0 &&
+          <span className="ml-2 text-sm font-semibold text-primary">{rating}/5</span>
+          }
         </div>
       </div>
 
       {/* Name */}
       <div>
-        <label className="mb-1 block text-sm font-medium">Vaše ime *</label>
+        <label className="mb-1 block text-sm font-medium">Vaše ime </label>
         <Input
           placeholder="Unesite ime"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          maxLength={100}
-        />
+          maxLength={100} />
+        
       </div>
 
       {/* Comment */}
@@ -131,17 +131,17 @@ export function ReviewBlock() {
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           maxLength={500}
-          rows={3}
-        />
+          rows={3} />
+        
       </div>
 
       <button
         onClick={handleSubmit}
         disabled={submitting}
-        className="w-full rounded-xl bg-primary px-4 py-3 font-bold text-primary-foreground transition-all hover:opacity-90 active:scale-95 disabled:opacity-50"
-      >
+        className="w-full rounded-xl bg-primary px-4 py-3 font-bold text-primary-foreground transition-all hover:opacity-90 active:scale-95 disabled:opacity-50">
+        
         {submitting ? "Šaljem..." : "Pošalji recenziju"}
       </button>
-    </div>
-  );
+    </div>);
+
 }
