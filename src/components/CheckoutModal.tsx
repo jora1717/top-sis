@@ -97,7 +97,7 @@ function ConfettiEffect() {
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" />;
 }
 
-
+export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSubmit }: CheckoutModalProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");

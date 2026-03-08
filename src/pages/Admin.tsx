@@ -162,7 +162,7 @@ export default function Admin() {
 
                 <div className="text-sm text-muted-foreground">
                   <span className="font-medium text-foreground">Vreme dostave: </span>
-                  {order.vreme_dostave ? `${order.vreme_dostave} min` : "—"}
+                  {order.nacin_dostave === "delivery" ? (order.vreme_dostave ? `${order.vreme_dostave} min` : "—") : "/"}
                 </div>
 
                 <div className="rounded-lg bg-muted p-3 space-y-1.5">
