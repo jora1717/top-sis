@@ -142,11 +142,14 @@ const Index = () => {
             rel="noopener noreferrer"
             className="block overflow-hidden rounded-xl border border-border transition-opacity hover:opacity-90"
           >
-            <img
-              src="https://maps.googleapis.com/maps/api/staticmap?center=44.82,20.46&zoom=15&size=800x350&scale=2&markers=color:red%7C44.82,20.46&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
-              alt="Top Šiš lokacija na mapi - Strugarska 1a, Čukarička padina"
-              className="h-[350px] w-full object-cover"
+            <iframe
+              title="Top Šiš lokacija"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=20.445%2C44.81%2C20.475%2C44.83&layer=mapnik&marker=44.82%2C20.46"
+              width="100%"
+              height="350"
+              style={{ border: 0 }}
               loading="lazy"
+              className="pointer-events-none"
             />
           </a>
         </div>
