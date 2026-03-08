@@ -112,7 +112,7 @@ const Index = () => {
         </div>
 
         {/* Recenzije */}
-        <div className="mt-10">
+        <div className="mt-10 mx-auto max-w-md">
           <ReviewBlock />
         </div>
       </main>
