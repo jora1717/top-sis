@@ -7,7 +7,7 @@ import { ToppingsModal } from "@/components/ToppingsModal";
 import { useCart } from "@/hooks/useCart";
 import { menuCategories, type MenuItem } from "@/data/menu";
 import heroImg from "@/assets/hero-grill.jpg";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Timer, Rocket, ClipboardList, BadgeDollarSign, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -64,40 +64,41 @@ const Index = () => {
 
       {/* Menu */}
       <main className="container py-6">
-        <div className="space-y-10">
-          {menuCategories.map((cat) =>
-          <MenuSection
-            key={cat.id}
-            category={cat}
-            onAddItem={(item) => cart.addItem(item)}
-            onAddWithToppings={handleAddWithToppings} />
-
-          )}
-        </div>
-      </main>
-
-      {/* Zašto baš mi? */}
-      <section id="zasto-mi" className="scroll-mt-36 md:scroll-mt-28 border-t border-border py-16">
-        <div className="container">
-          <h2 className="mb-2 text-center text-2xl font-bold sm:text-3xl">Zašto baš mi?</h2>
-          <p className="mx-auto mb-10 max-w-lg text-center text-muted-foreground">Razlozi zašto nas naši gosti biraju iznova i iznova.</p>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Zašto baš mi? */}
+        <section id="zasto-mi" className="scroll-mt-36 md:scroll-mt-28 mb-10">
+          <h2 className="mb-2 text-2xl font-bold sm:text-3xl">Zašto baš mi?</h2>
+          <p className="mb-6 max-w-lg text-muted-foreground">Razlozi zašto nas naši gosti biraju iznova i iznova.</p>
+          <div className="space-y-4">
             {[
-              { icon: "⏱️", title: "Štedimo vaše vreme", text: "Naš sajt je dizajniran tako da vas od ulaska do potvrđene narudžbine dele samo nekoliko klikova. Štedimo vaše vreme jer znamo koliko je dragoceno." },
-              { icon: "🚀", title: "Brza i efikasna dostava", text: "Fokusirani smo na maksimalnu brzinu kako bi vaša hrana stigla topla i sveža, direktno do vašeg praga ili kancelarije." },
-              { icon: "📋", title: "Jasna i pregledna ponuda", text: "Zaboravite na nepregledne i komplikovane menije. Kod nas je izbor brz, jednostavan i bez skrivenih komplikacija." },
-              { icon: "💰", title: "Vrhunski kvalitet po fer ceni", text: "Spajamo visok standard kvaliteta hrane sa cenama koje su prilagođene studentima i mladim zaposlenim ljudima." },
-              { icon: "🔒", title: "Transparentnost i sigurnost", text: "U svakom trenutku znate šta dobijate, koliko plaćate i kada vaša hrana stiže." },
+              { icon: Timer, title: "Štedimo vaše vreme", text: "Naš sajt je dizajniran tako da vas od ulaska do potvrđene narudžbine dele samo nekoliko klikova. Štedimo vaše vreme jer znamo koliko je dragoceno." },
+              { icon: Rocket, title: "Brza i efikasna dostava", text: "Fokusirani smo na maksimalnu brzinu kako bi vaša hrana stigla topla i sveža, direktno do vašeg praga ili kancelarije." },
+              { icon: ClipboardList, title: "Jasna i pregledna ponuda", text: "Zaboravite na nepregledne i komplikovane menije. Kod nas je izbor brz, jednostavan i bez skrivenih komplikacija." },
+              { icon: BadgeDollarSign, title: "Vrhunski kvalitet po fer ceni", text: "Spajamo visok standard kvaliteta hrane sa cenama koje su prilagođene studentima i mladim zaposlenim ljudima." },
+              { icon: ShieldCheck, title: "Transparentnost i sigurnost", text: "U svakom trenutku znate šta dobijate, koliko plaćate i kada vaša hrana stiže." },
             ].map((item) => (
-              <div key={item.title} className="rounded-xl border border-border bg-card p-6 transition-shadow hover:food-card-shadow">
-                <span className="mb-3 block text-3xl">{item.icon}</span>
-                <h3 className="mb-2 text-lg font-bold">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+              <div key={item.title} className="flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition-shadow hover:food-card-shadow">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15">
+                  <item.icon className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="mb-1 font-bold">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                </div>
               </div>
             ))}
           </div>
+        </section>
+
+        <div className="space-y-10">
+          {menuCategories.map((cat) =>
+            <MenuSection
+              key={cat.id}
+              category={cat}
+              onAddItem={(item) => cart.addItem(item)}
+              onAddWithToppings={handleAddWithToppings} />
+          )}
         </div>
-      </section>
+      </main>
 
       {/* O nama */}
       <section id="o-nama" className="scroll-mt-36 md:scroll-mt-28 border-t border-border bg-card py-12">
