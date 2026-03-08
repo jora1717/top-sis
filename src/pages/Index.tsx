@@ -53,7 +53,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
         <div className="absolute bottom-6 left-0 right-0 container">
           <div>
-            <h2 className="text-3xl font-bold sm:text-5xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
+            <h2 className="text-3xl font-bold sm:text-5xl" style={{ textShadow: '0 0 12px rgba(0,0,0,0.9), 0 2px 6px rgba(0,0,0,0.8), 1px 1px 0 rgba(0,0,0,0.6)' }}>
               Brza hrana,<br />
               <span className="text-primary">pravi ukus.</span>
             </h2>
