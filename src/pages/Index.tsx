@@ -141,7 +141,7 @@ const Index = () => {
             <span className="underline underline-offset-2">Strugarska 1a, Čukarička padina</span>
           </a>
           <div className="overflow-hidden rounded-xl border border-border">
-            <iframe title="Top Šiš lokacija" src="https://maps.google.com/maps?q=Strugarska+1a+%C4%8Cukari%C4%8Dka+padina+Beograd&t=&z=17&ie=UTF8&iwloc=&output=embed" width="100%" height="350"
+            <iframe title="Top Šiš lokacija" src="https://maps.google.com/maps?q=Top+%C5%A0i%C5%A1+Fast+Food+Strugarska+1a+Beograd&t=&z=17&ie=UTF8&iwloc=&output=embed" width="100%" height="350"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"
