@@ -101,7 +101,7 @@ const Index = () => {
         </section>
 
         <div className="space-y-10">
-          {menuCategories.filter((cat) => !["palacinke", "prilozi"].includes(cat.id)).map((cat) =>
+          {menuCategories.map((cat) =>
             <MenuSection
               key={cat.id}
               category={cat}
@@ -110,20 +110,9 @@ const Index = () => {
           )}
         </div>
 
-        {/* Palačinke + Prilozi + Recenzije side by side */}
-        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px]">
-          <div className="space-y-10">
-            {menuCategories.filter((cat) => ["palacinke", "prilozi"].includes(cat.id)).map((cat) =>
-              <MenuSection
-                key={cat.id}
-                category={cat}
-                onAddItem={(item) => cart.addItem(item)}
-                onAddWithToppings={handleAddWithToppings} />
-            )}
-          </div>
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <ReviewBlock />
-          </div>
+        {/* Recenzije */}
+        <div className="mt-10">
+          <ReviewBlock />
         </div>
       </main>
 
