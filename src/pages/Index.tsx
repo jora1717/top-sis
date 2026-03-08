@@ -58,6 +58,16 @@ const Index = () => {
               <span className="text-primary">pravi ukus.</span>
             </h2>
             <p className="mt-2 text-muted-foreground drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">Naruči ukusnu hranu u samo par klikova!</p>
+            <button
+              onClick={() => {
+                const el = document.getElementById("sis");
+                if (!el) return;
+                const headerH = document.querySelector("header")?.getBoundingClientRect().height ?? 0;
+                window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - (headerH + 16), behavior: "smooth" });
+              }}
+              className="mt-4 inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 font-bold text-primary-foreground transition-all hover:opacity-90 active:scale-95 glow-primary">
+              PORUČI ODMAH
+            </button>
           </div>
         </div>
       </section>
