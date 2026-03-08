@@ -136,18 +136,19 @@ const Index = () => {
             <MapPin className="h-5 w-5 text-primary" />
             <span className="underline underline-offset-2">Strugarska 1a, Čukarička padina</span>
           </a>
-          <div className="overflow-hidden rounded-xl border border-border">
-            <iframe
-              title="Top Šiš lokacija"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.5!2d20.46!3d44.82!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sStrugarska+1a!5e0!3m2!1ssr!2srs!4v1700000000000"
-              width="100%"
-              height="350"
-              style={{ border: 0 }}
-              allowFullScreen
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Strugarska+1a+%C4%8Cukari%C4%8Dka+padina+Beograd"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block overflow-hidden rounded-xl border border-border transition-opacity hover:opacity-90"
+          >
+            <img
+              src="https://maps.googleapis.com/maps/api/staticmap?center=44.82,20.46&zoom=15&size=800x350&scale=2&markers=color:red%7C44.82,20.46&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
+              alt="Top Šiš lokacija na mapi - Strugarska 1a, Čukarička padina"
+              className="h-[350px] w-full object-cover"
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade" />
-
-          </div>
+            />
+          </a>
         </div>
       </section>
 
