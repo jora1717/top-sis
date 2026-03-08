@@ -44,7 +44,7 @@ function fieldBorderClass(value: string, isValid: boolean, hasError: boolean, sh
   return "border-border";
 }
 
-
+export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSubmit }: CheckoutModalProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
