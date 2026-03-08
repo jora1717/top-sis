@@ -139,7 +139,7 @@ const Index = () => {
           <div className="overflow-hidden rounded-xl border border-border">
             <iframe
               title="Top Šiš lokacija"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.5!2d20.46!3d44.82!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sStrugarska+1a!5e0!3m2!1ssr!2srs!4v1700000000000"
+              src="https://maps.google.com/maps?q=Strugarska+1a+%C4%8Cukari%C4%8Dka+padina+Beograd&t=&z=17&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="350"
               style={{ border: 0 }}
