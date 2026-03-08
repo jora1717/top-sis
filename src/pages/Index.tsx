@@ -106,7 +106,7 @@ const Index = () => {
               // Start grid: Palačinke + Prilozi on left, ReviewBlock on right
               const priloziCat = menuCategories.find((c) => c.id === "prilozi");
               return (
-                <div key="palacinke-prilozi-review" className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px]">
+                <div key="palacinke-prilozi-review" className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_300px]">
                   <div className="space-y-10">
                     <MenuSection
                       category={cat}
