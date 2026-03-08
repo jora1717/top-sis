@@ -12,6 +12,7 @@ import { ReviewBlock } from "@/components/ReviewBlock";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import LocationMap from "@/components/LocationMap";
 
 const Index = () => {
   const cart = useCart();
