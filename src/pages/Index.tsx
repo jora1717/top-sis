@@ -7,7 +7,7 @@ import { ToppingsModal } from "@/components/ToppingsModal";
 import { useCart } from "@/hooks/useCart";
 import { menuCategories, type MenuItem } from "@/data/menu";
 import heroImg from "@/assets/hero-grill.jpg";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Timer, Rocket, ClipboardList, BadgeDollarSign, ShieldCheck } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -58,6 +58,32 @@ const Index = () => {
               <span className="text-primary">pravi ukus.</span>
             </h2>
             <p className="mt-2 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] text-2xl font-medium text-[#b67f5d]">Naruči ukusnu hranu u samo par klikova!</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Zašto baš mi */}
+      <section id="zasto-mi" className="scroll-mt-36 md:scroll-mt-28 border-t border-border bg-card py-12">
+        <div className="container">
+          <h2 className="mb-6 text-2xl font-bold">Zašto baš mi?</h2>
+          <div className="space-y-4">
+            {[
+              { icon: Timer, title: "Brza priprema", text: "Vaša narudžbina je gotova za svega par minuta — bez dugog čekanja." },
+              { icon: Rocket, title: "Brza dostava", text: "Dostavljamo na vašu adresu u najkraćem mogućem roku." },
+              { icon: ClipboardList, title: "Lako naručivanje", text: "Izaberite jelo, dodajte u korpu i naručite — brzo i jednostavno." },
+              { icon: BadgeDollarSign, title: "Povoljne cene", text: "Kvalitetna hrana po pristupačnim cenama za svakoga." },
+              { icon: ShieldCheck, title: "Sveži sastojci", text: "Koristimo samo najsvežije i proverene sastojke za svako jelo." },
+            ].map((item) => (
+              <div key={item.title} className="flex items-start gap-4 rounded-xl border border-border bg-background p-5">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/15">
+                  <item.icon className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="mb-1 font-bold">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.text}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
