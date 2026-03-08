@@ -101,42 +101,19 @@ const Index = () => {
         </section>
 
         <div className="space-y-10">
-          {menuCategories.map((cat) => {
-            if (cat.id === "palacinke") {
-              // Start grid: Palačinke + Prilozi on left, ReviewBlock on right
-              const priloziCat = menuCategories.find((c) => c.id === "prilozi");
-              return (
-                <div key="palacinke-prilozi-review" className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_300px]">
-                  <div className="space-y-10">
-                    <MenuSection
-                      category={cat}
-                      onAddItem={(item) => cart.addItem(item)}
-                      onAddWithToppings={handleAddWithToppings}
-                    />
-                    {priloziCat && (
-                      <MenuSection
-                        category={priloziCat}
-                        onAddItem={(item) => cart.addItem(item)}
-                        onAddWithToppings={handleAddWithToppings}
-                      />
-                    )}
-                  </div>
-                  <div className="lg:sticky lg:top-28 lg:self-start">
-                    <ReviewBlock />
-                  </div>
-                </div>
-              );
-            }
-            if (cat.id === "prilozi") return null; // already rendered above
-            return (
-              <MenuSection
-                key={cat.id}
-                category={cat}
-                onAddItem={(item) => cart.addItem(item)}
-                onAddWithToppings={handleAddWithToppings}
-              />
-            );
-          })}
+          {menuCategories.map((cat) =>
+            <MenuSection
+              key={cat.id}
+              category={cat}
+              onAddItem={(item) => cart.addItem(item)}
+              onAddWithToppings={handleAddWithToppings}
+            />
+          )}
+        </div>
+
+        {/* Recenzije */}
+        <div className="mt-10">
+          <ReviewBlock />
         </div>
       </main>
 
