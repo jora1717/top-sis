@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo } from "react";
 import { X, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { CartItem } from "@/hooks/useCart";
@@ -43,61 +43,8 @@ function fieldBorderClass(value: string, isValid: boolean, hasError: boolean, sh
   if (isValid) return "border-green-500/60 ring-1 ring-green-500/20";
   return "border-border";
 }
-function ConfettiEffect() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
 
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-
-    const colors = ["#f97316", "#fb923c", "#000000", "#1a1a1a", "#ea580c", "#292524"];
-    const pieces: { x: number; y: number; w: number; h: number; color: string; vy: number; vx: number; rot: number; rv: number }[] = [];
-
-    for (let i = 0; i < 60; i++) {
-      pieces.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * -canvas.height,
-        w: 4 + Math.random() * 6,
-        h: 8 + Math.random() * 8,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        vy: 1.5 + Math.random() * 3,
-        vx: (Math.random() - 0.5) * 2,
-        rot: Math.random() * Math.PI * 2,
-        rv: (Math.random() - 0.5) * 0.15,
-      });
-    }
-
-    let animId: number;
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      let alive = false;
-      for (const p of pieces) {
-        p.y += p.vy;
-        p.x += p.vx;
-        p.rot += p.rv;
-        if (p.y < canvas.height + 20) alive = true;
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rot);
-        ctx.fillStyle = p.color;
-        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-        ctx.restore();
-      }
-      if (alive) animId = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => cancelAnimationFrame(animId);
-  }, []);
-
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0" />;
-}
-
-export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSubmit }: CheckoutModalProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
@@ -202,16 +149,14 @@ export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSub
     <div className="fixed inset-0 z-[60] flex items-center justify-center bg-background/70 backdrop-blur-sm p-4">
       <div className="w-full max-w-md rounded-2xl border border-border bg-card p-6 animate-slide-up">
         {submitted ? (
-          <div className="relative flex flex-col items-center gap-4 py-8 overflow-hidden">
-            {/* Confetti */}
-            <ConfettiEffect />
+          <div className="relative flex flex-col items-center gap-4 py-8">
             <button onClick={handleClose} className="absolute top-0 right-0 rounded-lg p-2 text-muted-foreground hover:bg-muted z-10">
               <X className="h-5 w-5" />
             </button>
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20">
               <Check className="h-8 w-8 text-primary" />
             </div>
-            <h2 className="text-xl font-bold">Narudžbina primljena! 🎉</h2>
+            <h2 className="text-xl font-bold">Narudžbina primljena! <span style={{ filter: 'grayscale(1) brightness(0.5) sepia(1) hue-rotate(-30deg) saturate(5)' }}>🎉</span></h2>
             <p className="text-center text-muted-foreground">
               Hvala Vam! Vaša narudžbina će biti spremna uskoro.
             </p>
