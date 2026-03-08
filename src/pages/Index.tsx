@@ -132,7 +132,7 @@ const Index = () => {
       <section id="lokacija" className="scroll-mt-36 md:scroll-mt-28 border-t border-border py-12">
         <div className="container">
           <h2 className="mb-4 text-2xl font-bold">Lokacija</h2>
-          <a href="https://www.google.com/maps/search/?api=1&query=Strugarska+1a+Čukarička+padina+Beograd" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mb-4 text-muted-foreground hover:text-foreground transition-colors">
+          <a href="https://maps.app.goo.gl/C5Aa3HVNymQHat8v7" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mb-4 text-muted-foreground hover:text-foreground transition-colors">
             <MapPin className="h-5 w-5 text-primary" />
             <span className="underline underline-offset-2">Strugarska 1a, Čukarička padina</span>
           </a>
