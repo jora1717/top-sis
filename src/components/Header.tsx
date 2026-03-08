@@ -8,6 +8,7 @@ interface HeaderProps {
 }
 
 const navLinks = [
+  { label: "Zašto baš mi?", href: "#zasto-mi" },
   { label: "O nama", href: "#o-nama" },
   { label: "Lokacija", href: "#lokacija" },
   { label: "Kontakt", href: "#kontakt" },
