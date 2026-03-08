@@ -1,36 +1,56 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
-// Fix default marker icon
-const icon = new L.Icon({
-  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+const POSITION: [number, number] = [44.77676021205433, 20.407498420850896];
+
+const mapMarkerIcon = L.icon({
+  iconRetinaUrl: markerIcon2x,
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
   iconSize: [25, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
 
-const POSITION: [number, number] = [44.77676021205433, 20.407498420850896];
+const LocationMap = () => {
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<L.Map | null>(null);
 
-const LocationMap = () => (
-  <MapContainer
-    center={POSITION}
-    zoom={17}
-    scrollWheelZoom={false}
-    style={{ width: "100%", height: "350px" }}
-    className="rounded-xl border border-border z-0"
-  >
-    <TileLayer
-      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    />
-    <Marker position={POSITION} icon={icon}>
-      <Popup>Top Šiš Fast Food</Popup>
-    </Marker>
-  </MapContainer>
-);
+  useEffect(() => {
+    if (!mapContainerRef.current || mapRef.current) return;
+
+    const map = L.map(mapContainerRef.current, {
+      scrollWheelZoom: false,
+      zoomControl: true,
+    }).setView(POSITION, 17);
+
+    mapRef.current = map;
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    const marker = L.marker(POSITION, { icon: mapMarkerIcon }).addTo(map);
+    marker.bindPopup("Top Šiš Fast Food");
+
+    return () => {
+      marker.remove();
+      map.remove();
+      mapRef.current = null;
+    };
+  }, []);
+
+  return (
+    <div className="overflow-hidden rounded-xl border border-border">
+      <div ref={mapContainerRef} className="h-[350px] w-full" aria-label="Mapa lokacije restorana" />
+    </div>
+  );
+};
 
 export default LocationMap;
