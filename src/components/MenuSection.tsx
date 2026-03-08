@@ -19,7 +19,7 @@ export function MenuSection({ category, onAddItem, onAddWithToppings }: MenuSect
   };
 
   return (
-    <section className="animate-slide-up">
+    <section id={category.id} className="scroll-mt-36 md:scroll-mt-28 animate-slide-up">
       <h2 className="mb-4 text-xl font-bold sm:text-2xl">{category.name}</h2>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         {category.items.map((item) =>
