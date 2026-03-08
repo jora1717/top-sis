@@ -111,21 +111,20 @@ const Index = () => {
           )}
         </div>
 
-        {/* Recenzije */}
-        <div className="mt-10 mx-auto max-w-md">
-          <ReviewBlock />
-        </div>
       </main>
 
-      {/* O nama */}
+      {/* O nama + Recenzije */}
       <section id="o-nama" className="scroll-mt-36 md:scroll-mt-28 border-t border-border bg-card py-12">
-        <div className="container">
-          <h2 className="mb-4 text-2xl font-bold">O nama</h2>
-          <p className="max-w-2xl text-muted-foreground leading-relaxed">
-            Top Šiš Fast Food je mesto gde se tradicija i ukus spajaju. Već godinama pružamo našim gostima
-            najkvalitetnije šiš specijalitete, pljeskavice i ostala jela pripremljena sa ljubavlju i od
-            svežih sastojaka. Naša misija je jednostavna — brza, ukusna i pristupačna hrana za sve.
-          </p>
+        <div className="container grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div>
+            <h2 className="mb-4 text-2xl font-bold">O nama</h2>
+            <p className="text-muted-foreground leading-relaxed">
+              Top Šiš Fast Food je mesto gde se tradicija i ukus spajaju. Već godinama pružamo našim gostima
+              najkvalitetnije šiš specijalitete, pljeskavice i ostala jela pripremljena sa ljubavlju i od
+              svežih sastojaka. Naša misija je jednostavna — brza, ukusna i pristupačna hrana za sve.
+            </p>
+          </div>
+          <ReviewBlock />
         </div>
       </section>
 
