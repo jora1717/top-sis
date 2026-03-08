@@ -164,7 +164,7 @@ export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSub
               <p className="text-sm text-primary font-semibold">Vreme dostave: {deliveryTime} min</p>
             )}
             {deliveryMode === "pickup" && (
-              <p className="text-sm text-primary font-semibold text-center">Možete preuzeti Vašu porudžbinu u objektu za 10ak minuta.</p>
+              <p className="text-sm text-primary font-semibold text-center">Možete preuzeti Vašu porudžbinu u objektu kroz 10ak minuta.</p>
             )}
           </div>
         ) : (
