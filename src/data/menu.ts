@@ -68,10 +68,11 @@ export const menuCategories: MenuCategory[] = [
     image: pljeskavicaImg,
     items: [
        { id: "plj-1", name: "Velika pljeskavica", description: "250g roštilj mesa, lepinja", price: 400, category: "pljeskavice", image: velikaPljImg },
-       { id: "plj-2", name: "Mala pljeskavica", description: "150g roštilj mesa, lepinja", price: 320, category: "pljeskavice", image: malaPljImg },
        { id: "plj-3", name: "Gurmanska pljeskavica", description: "250g roštilj mesa puneno sa topljenim sirom i šunkom", price: 450, category: "pljeskavice", image: gurmanskaPljImg, recommended: true },
        { id: "plj-4", name: "Punjena pljeskavica", description: "250g roštilj mesa puneno sa topljenim sirom, lepinja", price: 470, category: "pljeskavice", image: punjenaPljImg },
        { id: "plj-5", name: "Leskovačka pljeskavica", description: "250g roštilj mesa pomešano sa crnim lukom i tucanom", price: 430, category: "pljeskavice", image: leskovackaPljImg },
+       { id: "plj-2", name: "Mala pljeskavica", description: "150g roštilj mesa, lepinja", price: 320, category: "pljeskavice", image: malaPljImg },
+       { id: "plj-6", name: "Srednja pljeskavica", description: "200g roštilj mesa, lepinja", price: 350, category: "pljeskavice", image: velikaPljImg },
     ],
   },
    {
