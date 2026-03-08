@@ -50,7 +50,7 @@ const Index = () => {
       {/* Hero */}
       <section className="relative h-56 overflow-hidden sm:h-72">
         <img src={heroImg} alt="Top Šiš Fast Food specijaliteti" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
         <div className="absolute bottom-6 left-0 right-0 container">
           <div>
             <h2 className="text-3xl font-bold sm:text-5xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
