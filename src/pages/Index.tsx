@@ -6,7 +6,7 @@ import { CheckoutModal } from "@/components/CheckoutModal";
 import { ToppingsModal } from "@/components/ToppingsModal";
 import { useCart } from "@/hooks/useCart";
 import { menuCategories, type MenuItem } from "@/data/menu";
-import heroImg from "@/assets/sis-hero.webp";
+import heroImg from "@/assets/hero-grill.jpg";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
