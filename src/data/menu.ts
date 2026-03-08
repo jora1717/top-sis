@@ -45,9 +45,10 @@ import cocaColaImg from "@/assets/menu/coca-cola.jpg";
 import fantaImg from "@/assets/menu/fanta.jpg";
 import spriteImg from "@/assets/menu/sprite.jpg";
 import velikiSisImg from "@/assets/menu/veliki-sis.jpg";
-import srednjiSisImg from "@/assets/menu/srednji-sis.jpg";
-import maliSisImg from "@/assets/menu/mali-sis.jpg";
+import srednjiSisImg from "@/assets/menu/sis-novi.jpg";
+import maliSisImg from "@/assets/menu/sis-novi.jpg";
 import punjeniSisImg from "@/assets/menu/punjeni-sis.jpg";
+import rosaImg from "@/assets/menu/rosa.jpg";
 
 export const menuCategories: MenuCategory[] = [
   {
@@ -111,6 +112,7 @@ export const menuCategories: MenuCategory[] = [
       { id: "osv-1", name: "Coca Cola", description: "0.5L", price: 110, category: "osvezenje", image: cocaColaImg },
       { id: "osv-2", name: "Fanta", description: "0.5L", price: 110, category: "osvezenje", image: fantaImg },
       { id: "osv-3", name: "Sprite", description: "0.5L", price: 110, category: "osvezenje", image: spriteImg },
+      { id: "osv-4", name: "Rosa", description: "0.5L", price: 90, category: "osvezenje", image: rosaImg },
     ],
   },
 ];
