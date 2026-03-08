@@ -91,6 +91,30 @@ export type Database = {
         }
         Relationships: []
       }
+      reviews: {
+        Row: {
+          id: string
+          ime: string
+          komentar: string | null
+          kreirano: string
+          ocena: number
+        }
+        Insert: {
+          id?: string
+          ime: string
+          komentar?: string | null
+          kreirano?: string
+          ocena: number
+        }
+        Update: {
+          id?: string
+          ime?: string
+          komentar?: string | null
+          kreirano?: string
+          ocena?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
