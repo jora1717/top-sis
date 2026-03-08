@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { X, Check } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import type { CartItem } from "@/hooks/useCart";
@@ -131,14 +131,16 @@ export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSub
     }
 
     setSubmitted(true);
-    setTimeout(() => {
-      onSubmit();
-      setSubmitted(false);
-      setShowErrors(false);
-      setName("");
-      setPhone("");
-      setAddress("");
-    }, 2000);
+  };
+
+  const handleClose = () => {
+    onSubmit();
+    setSubmitted(false);
+    setShowErrors(false);
+    setName("");
+    setPhone("");
+    setAddress("");
+    onClose();
   };
 
   const inputBase = "w-full rounded-lg bg-input px-4 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-colors border";
@@ -147,16 +149,24 @@ export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSub
     <div className="fixed inset-0 z-[60] flex items-center justify-center bg-background/70 backdrop-blur-sm p-4">
       <div className="w-full max-w-md rounded-2xl border border-border bg-card p-6 animate-slide-up">
         {submitted ? (
-          <div className="flex flex-col items-center gap-4 py-8">
+          <div className="relative flex flex-col items-center gap-4 py-8 overflow-hidden">
+            {/* Confetti */}
+            <ConfettiEffect />
+            <button onClick={handleClose} className="absolute top-0 right-0 rounded-lg p-2 text-muted-foreground hover:bg-muted z-10">
+              <X className="h-5 w-5" />
+            </button>
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20">
               <Check className="h-8 w-8 text-primary" />
             </div>
             <h2 className="text-xl font-bold">Narudžbina primljena! 🎉</h2>
             <p className="text-center text-muted-foreground">
-              Hvala vam! Vaša narudžbina će biti spremna uskoro.
+              Hvala Vam! Vaša narudžbina će biti spremna uskoro.
             </p>
             {deliveryMode === "delivery" && (
               <p className="text-sm text-primary font-semibold">Vreme dostave: {deliveryTime} min</p>
+            )}
+            {deliveryMode === "pickup" && (
+              <p className="text-sm text-primary font-semibold text-center">Možete preuzeti Vašu porudžbinu u objektu za 10ak minuta.</p>
             )}
           </div>
         ) : (
