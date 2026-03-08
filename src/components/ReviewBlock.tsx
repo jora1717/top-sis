@@ -50,7 +50,7 @@ export function ReviewBlock() {
 
   return (
     <div className="rounded-xl border border-border bg-card p-5 space-y-4">
-      <h3 className="text-lg font-bold">Ostavite recenziju</h3>
+      <h3 className="font-bold text-2xl">Ostavite recenziju</h3>
       <p className="text-sm text-muted-foreground">Podelite vaše iskustvo sa nama!</p>
 
       {/* Star rating */}

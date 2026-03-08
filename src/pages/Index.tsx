@@ -118,9 +118,13 @@ const Index = () => {
         <div className="container grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div>
             <h2 className="mb-4 text-2xl font-bold">O nama</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Top Šiš Fast Food je mesto gde se tradicija i ukus spajaju. Već godinama pružamo našim gostima najkvalitetnije šiš specijalitete, pljeskavice i ostala jela pripremljena sa ljubavlju i od svežih sastojaka. Naša misija je jednostavna — brza, ukusna i pristupačna hrana za sve.Top Šiš Fast Food je mesto gde se tradicija i ukus spajaju. Već godinama pružamo našim gostima najkvalitetnije šiš specijalitete, pljeskavice i ostala jela pripremljena sa ljubavlju i od svežih sastojaka. Naša misija je jednostavna — brza, ukusna i pristupačna hrana za sve.Top Šiš Fast Food je mesto gde se tradicija i ukus spajaju. Već godinama pružamo našim gostima najkvalitetnije šiš specijalitete, pljeskavice i ostala jela pripremljena sa ljubavlju i od svežih sastojaka. Naša misija je jednostavna — brza, ukusna i pristupačna hrana za sve.Top Šiš Fast Food je mesto gde se tradicija i ukus spajaju. Već godinama pružamo našim gostima najkvalitetnije šiš specijalitete, pljeskavice i ostala jela pripremljena sa ljubavlju i od svežih sastojaka. Naša misija je jednostavna — brza, ukusna i pristupačna hrana za sve.
-            
+            <p className="text-muted-foreground leading-relaxed text-lg font-medium">Dobrodošli u Top Šiš Fast Food, mesto gde se autentični ukusi spajaju sa brzinom modernog doba. Naša priča počinje iz jednostavne potrebe: da ljubiteljima kvalitetne hrane pružimo iskustvo kakvo zaslužuju – bez komplikovanih menija, dugog čekanja i nepotrebnog stresa. Godinama unazad, fokusirani smo na pripremu vrhunskih šiš specijaliteta, pljeskavica i drugih jela od svežih sastojaka koje nabavljamo svakodnevno. Danas tu tradiciju podižemo na viši nivo kroz moderan dizajn i funkcionalnost naše platforme. U svetu koji se brzo menja, verujemo da obrok treba da bude uživanje, a ne logistički izazov. Naš cilj je da unapredimo iskustvo uživanja u brzoj hrani kombinujući visok kvalitet i brzu uslugu, spojimo tradicionalno pripremljenu hranu sa najvišim standardima digitalne usluge i postanemo Vaš prvi izbor za brz, ukusan i pristupačan obrok, bilo da ste kod kuće, na poslu ili u pokretu.
+
+
+
+
+
+
 
             </p>
           </div>
@@ -137,15 +141,11 @@ const Index = () => {
             <span className="underline underline-offset-2">Strugarska 1a, Čukarička padina</span>
           </a>
           <div className="overflow-hidden rounded-xl border border-border">
-            <iframe
-              title="Top Šiš lokacija"
-              src="https://maps.google.com/maps?q=Strugarska+1a+%C4%8Cukari%C4%8Dka+padina+Beograd&t=&z=17&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="350"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade" />
+            <iframe title="Top Šiš lokacija" src="https://maps.google.com/maps?q=Strugarska+1a+%C4%8Cukari%C4%8Dka+padina+Beograd&t=&z=17&ie=UTF8&iwloc=&output=embed" width="100%" height="350"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade" />
 
           </div>
         </div>
