@@ -8,9 +8,10 @@ interface HeaderProps {
 }
 
 const navLinks = [
-{ label: "Kontakt", href: "#kontakt" },
-{ label: "Lokacija", href: "#lokacija" },
-{ label: "O nama", href: "#o-nama" }];
+  { label: "O nama", href: "#o-nama" },
+  { label: "Lokacija", href: "#lokacija" },
+  { label: "Kontakt", href: "#kontakt" },
+];
 
 
 export function Header({ cartCount, onCartClick }: HeaderProps) {
