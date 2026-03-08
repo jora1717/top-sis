@@ -134,7 +134,7 @@ const Index = () => {
           <h2 className="mb-4 text-2xl font-bold">Lokacija</h2>
           <div className="flex items-center gap-2 mb-4 text-muted-foreground">
             <MapPin className="h-5 w-5 text-primary" />
-            <span>Strugarska 1a</span>
+            <span>Strugarska 1a, Čukarička padina</span>
           </div>
           <div className="overflow-hidden rounded-xl border border-border">
             <iframe
