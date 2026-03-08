@@ -42,7 +42,7 @@ export function ReviewBlock() {
       return;
     }
 
-    toast.success("Hvala na recenziji! ⭐");
+    toast.success("Hvala na recenziji!");
     setRating(0);
     setName("");
     setComment("");
