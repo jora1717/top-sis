@@ -52,11 +52,13 @@ const Index = () => {
         <img src={heroImg} alt="Top Šiš Fast Food specijaliteti" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
         <div className="absolute bottom-6 left-0 right-0 container">
-          <h2 className="text-3xl font-bold sm:text-5xl">
-            Brza hrana,<br />
-            <span className="text-primary">pravi ukus.</span>
-          </h2>
-          <p className="mt-2 text-muted-foreground">Naruči ukusnu hranu u samo par klikova!</p>
+          <div className="inline-block rounded-2xl bg-black/35 backdrop-blur-md px-6 py-4">
+            <h2 className="text-3xl font-bold sm:text-5xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
+              Brza hrana,<br />
+              <span className="text-primary">pravi ukus.</span>
+            </h2>
+            <p className="mt-2 text-muted-foreground drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)]">Naruči ukusnu hranu u samo par klikova!</p>
+          </div>
         </div>
       </section>
 
