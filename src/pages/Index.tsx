@@ -52,7 +52,7 @@ const Index = () => {
         <img src={heroImg} alt="Top Šiš Fast Food specijaliteti" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
         <div className="absolute bottom-6 left-0 right-0 container">
-          <h2 className="text-3xl font-bold sm:text-4xl">
+          <h2 className="text-3xl font-bold sm:text-5xl">
             Brza hrana,<br />
             <span className="text-primary">pravi ukus.</span>
           </h2>
