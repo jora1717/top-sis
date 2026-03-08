@@ -8,6 +8,7 @@ import { useCart } from "@/hooks/useCart";
 import { menuCategories, type MenuItem } from "@/data/menu";
 import heroImg from "@/assets/hero-grill.jpg";
 import { MapPin, Phone, Mail, Clock, Timer, Rocket, ClipboardList, BadgeDollarSign, ShieldCheck } from "lucide-react";
+import { ReviewBlock } from "@/components/ReviewBlock";
 import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -100,13 +101,29 @@ const Index = () => {
         </section>
 
         <div className="space-y-10">
-          {menuCategories.map((cat) =>
+          {menuCategories.filter((cat) => !["palacinke", "prilozi"].includes(cat.id)).map((cat) =>
             <MenuSection
               key={cat.id}
               category={cat}
               onAddItem={(item) => cart.addItem(item)}
               onAddWithToppings={handleAddWithToppings} />
           )}
+        </div>
+
+        {/* Palačinke + Prilozi + Recenzije side by side */}
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_340px]">
+          <div className="space-y-10">
+            {menuCategories.filter((cat) => ["palacinke", "prilozi"].includes(cat.id)).map((cat) =>
+              <MenuSection
+                key={cat.id}
+                category={cat}
+                onAddItem={(item) => cart.addItem(item)}
+                onAddWithToppings={handleAddWithToppings} />
+            )}
+          </div>
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <ReviewBlock />
+          </div>
         </div>
       </main>
 
