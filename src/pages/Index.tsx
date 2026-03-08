@@ -90,6 +90,17 @@ const Index = () => {
         </section>
 
         <div className="space-y-10">
+          {menuCategories.map((cat) =>
+            <MenuSection
+              key={cat.id}
+              category={cat}
+              onAddItem={(item) => cart.addItem(item)}
+              onAddWithToppings={handleAddWithToppings} />
+          )}
+        </div>
+      </main>
+
+      {/* O nama */}
       <section id="o-nama" className="scroll-mt-36 md:scroll-mt-28 border-t border-border bg-card py-12">
         <div className="container">
           <h2 className="mb-4 text-2xl font-bold">O nama</h2>
