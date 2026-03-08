@@ -26,7 +26,7 @@ export function MenuSection({ category, onAddItem, onAddWithToppings }: MenuSect
         <button
           key={item.id}
           onClick={() => handleClick(item)}
-          className="food-card-shadow group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/40 hover:bg-muted active:scale-[0.98]">
+          className="food-card-shadow group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-all duration-150 hover:border-primary/60 hover:shadow-[0_0_16px_hsl(8_85%_56%/0.25)] hover:bg-muted active:scale-[0.98]">
           
              <div className="relative aspect-square w-full overflow-hidden bg-muted">
                {item.image ?
