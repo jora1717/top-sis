@@ -161,7 +161,10 @@ export function CheckoutModal({ open, onClose, total, items, deliveryMode, onSub
               Hvala Vam! Vaša narudžbina će biti spremna uskoro.
             </p>
             {deliveryMode === "delivery" && (
-              <p className="text-sm text-primary font-semibold">Vreme dostave: {deliveryTime} min</p>
+              <>
+                <p className="text-sm text-primary font-semibold">Vreme dostave: {deliveryTime} min</p>
+                <p className="text-sm text-muted-foreground">Dostavljač će Vas kontaktirati kada bude na Vašoj lokaciji.</p>
+              </>
             )}
             {deliveryMode === "pickup" && (
               <p className="text-sm text-primary font-semibold text-center">Možete preuzeti Vašu porudžbinu u objektu kroz 10ak minuta.</p>
